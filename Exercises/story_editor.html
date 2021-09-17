@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head> 
+<title> Story Writer</title>
+<script>
+    function loadStory(){
+        var storyName = document.getElementById("name_input").value;
+        var storyHTML = localStorage.getItem(storyName);
+        document.getElementById("story_editor").value = storyHTML;
+    }
+    function saveStory(){
+ 	    var storyName = document.getElementById("name_input").value;
+ 		var storyHTML = document.getElementById("story_editor").value;
+ 		localStorage.setItem(storyName, storyHTML);
+    }
+    function displayStory(){
+ 		var storyHTML = document.getElementById("story_editor").value;
+ 		document.getElementById("story_display").innerHTML = storyHTML;
+ 	}
+</script>
+<style>
+textarea{
+    width:800px;
+    height: 250px;
+    background-color: rgb(167, 255, 251);
+}	
+h1{
+    font-family: Helvetica;
+}
+body{
+    text-align: center;
+    background-color: rgb(156, 248, 171);
+}
+</style>
+</head>   
+
+<body>
+    <h1>Give Me A Good Story</h1>
+    Story Name: <input id=name_input placeholder="Give it a name"></input>
+    <section>
+        <button onclick="loadStory()">Find and Edit It</button>
+        <button onclick="saveStory()">Save It</button>
+        <button onclick="displayStory()">Display It</button>
+    </section>
+    <br>
+    <textarea id="story_editor" placeholder="Tell me an interesting tale. Give it some good adventures, and dangerous dragons. "></textarea>
+    <section id="story_display"></section>
+</body>
+</html>
