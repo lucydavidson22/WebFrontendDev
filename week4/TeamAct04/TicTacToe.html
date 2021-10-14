@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        table {
+          width: 320px;
+          height: 320px;
+        }
+        td {
+            border-style: solid;
+        }
+  
+      </style>
+</head>
+<body>
+    <table class="board">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+  
+      <script>
+        const board = document.querySelector('.board');
+
+        const x = 'X';
+        const o = 'O';
+        let player = x;
+        
+        function playerSelect(playerChoice) {
+          playerChoice.target.innerHTML = player;
+          if (player === x) player = o;
+          else player = x;
+        }
+        
+        board.addEventListener('click', playerSelect);  // insert "touchend" where the click is when on a touch device like ipad or tablet
+      </script>
+    
+</body>
+</html>
