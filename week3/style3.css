@@ -1,5 +1,5 @@
 body {
-    font-size: 20px;
+    font-size: 15px;
     font-family: Tahoma, sans-serif;
   }
 
@@ -7,13 +7,17 @@ h1, h2{
   font-family: fantasy;
 }
 
-ol {
+ul {
   list-style: none;
 }
-ol li::before {
-  content: "🦕";
-  /* content: "📌"; */
+
+ul li::before {
+  content: "📌";
   display: inline-block;
   margin-right: 0.2rem;
 }
 
+ul li ul::before {
+    content: "🖋";
+    display: inline-block;
+  }

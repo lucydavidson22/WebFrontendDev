@@ -1,0 +1,37 @@
+body {
+    font-size: 15px;
+    font-family: Tahoma, sans-serif;
+  }
+
+h1, h2{
+  font-family: fantasy;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  content: "📌";
+  display: inline-block;
+  margin-right: 0.2rem;
+}
+
+ul li ul::before {
+    content: "🖋";
+    display: inline-block;
+}
+
+a:link, a:visited {
+    background-color: rgb(168, 0, 247);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(190, 124, 221);
+  }
