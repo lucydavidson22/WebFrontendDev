@@ -25,7 +25,7 @@ document.getElementById('todo-list').addEventListener('click', e => {
         doneStaysDone(itemKey); 
     }
     if (e.target.classList.contains('delete')) {
-        deleteTodo(itemKey);
+        deleteTask(itemKey);
         counter();
       }    
 });
@@ -134,7 +134,8 @@ const doneStaysDone = (key) => {
   renderCompletedTodos()
 }
 
-const deleteTodo = (key) => {
+//function to delete a task from the list whne the X is selected
+const deleteTask = (key) => {
   const index = tasks.findIndex(item => item.id === Number(key));
   const todoTask = {
       ...tasks[index],
