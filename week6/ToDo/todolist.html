@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="todo.css">
+<title>To Do List</title>
+</head>
+<body>
+  <section class="header"></section>
+  <div class="container">
+  
+    <div class="title-theme">
+      <h1>TO DO LIST</h1>
+    </div>
+
+    <!-- Mark up for the add task form -->
+    <div class="todosInput">
+      <form class="form" action="" newTodoForm>
+        <input id="todos" todoElements type="text" placeholder="Add a Task" >
+      </form>
+    </div>
+    <!-- Task List Display-->
+    <div class="taskList">
+      <ul id="todo-list">
+      </ul>
+    </div> <br>
+    <!-- Task List Footer -->
+    <div class="task-list-footer">
+      <p id="tasksLeft">items left</p>
+      <!-- Task List Filter Buttons-->
+        <!-- <div class="task-list-footer-list-div"> -->
+            <button class="btn" id="All">All</button>
+            <button class="btn" id="Active">Active</button>
+            <button class="btn" id="Completed">Completed</button>
+        <!-- </div> -->
+    </div> 
+  </div>
+    <script src="todo.js"></script>
+  </body>
+</html>
