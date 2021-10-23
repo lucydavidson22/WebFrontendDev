@@ -1,6 +1,9 @@
 body {
     font-size: 15px;
     font-family: Tahoma, sans-serif;
+    text-align: center;
+    background-color: rgb(53, 54, 54);
+    color: rgb(204, 198, 204);
   }
 
 h1, h2{
@@ -23,7 +26,7 @@ ul li ul::before {
 }
 
 a:link, a:visited {
-    background-color: rgb(168, 0, 247);
+    background-color: rgb(57, 159, 255);
     color: white;
     padding: 14px 25px;
     text-align: center;

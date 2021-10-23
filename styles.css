@@ -1,10 +1,15 @@
 body {
     font-size: 20px;
     font-family: Tahoma, sans-serif;
+    background-color: rgb(53, 54, 54);
+    text-align: center;
   }
 
 h1, h2{
   font-family: fantasy;
+  /* align-items: center; */
+  text-align: center;
+  color:rgb(204, 198, 204);
 }
 
 ol {
@@ -12,8 +17,42 @@ ol {
 }
 ol li::before {
   content: "🦕";
-  /* content: "📌"; */
   display: inline-block;
   margin-right: 0.2rem;
 }
 
+div{
+  background: rgb(204, 198, 204);
+  border: 5px solid #030301;
+  text-align: center;
+  border-radius: 75px;
+}
+
+.center {
+  border: 5px solid #030301;
+  text-align: center;
+}
+
+a:link {
+  background-color: rgb(0, 85, 165);
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+a:visited{
+  background-color: rgb(57, 159, 255);
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+a:hover, a:active {
+  background-color: rgb(190, 124, 221);
+}
