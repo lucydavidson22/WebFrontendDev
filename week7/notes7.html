@@ -140,19 +140,86 @@
     </ul>
     <h3>Closures</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>Function Scope
+            <ul>the value of a variable was only available inside the block it was created inside if the <span class="code">const</span> or 
+                <span class="code">let</span> keywords were used. This also applies to the body of a function if the 
+                <span class="code">var</span> keyword is used.</ul>
+                <ul style="color:yellow"><b>A closure is a reference to a variable that was created inside the scope of another function, 
+                    but is then kept alive and used in another part of the program.</b></ul>
+                    <ul>an 'inner' function, which is declared inside another function, has full access to all of the variables 
+                        declared inside the scope of the function in which it’s declared (the 'outer' function)</ul>
+        </li>
+        <li>Returning Functioins
+            <ul>closure is formed when the inner function is returned by the outer function, maintaining access to any 
+                variables declared inside the enclosing function</ul>
+            <ul>closure doesn't just have access to the value of a variable, it can also change the value of the variable 
+                long after the function in which it was originally declared has been invoked</ul>
+        </li>
+        <li>A Practical example
+            <ul>closure is formed when a function returns another function that then maintains access to any variables 
+                created in the original function’s scope</ul>
+        </li>
+        <li>A Counter Example
+            <ul>Closures not only have access to variables declared in a parent function's scope, they can also change the value of these variables</ul>
+        </li>
+        <li>Generators
+            <ul>These are special functions used to produce iterators that maintain the state of a value</ul>
+            <ul>To define a generator function, an asterisk symbol (*) is placed after the function declaration, like so: <br>
+                <span class="code">
+                function* exampleGenerator() {<br>
+                // code for the generator goes here<br>
+                }</span></ul>
+                <ul>Calling a generator function doesn’t actually run any of the code in the function; it returns a Generator 
+                    object that can be used to create an iterator that implements a next() method that returns a value every 
+                    time the next() method is called</ul>
+                <ul>Generator functions employ the special <span class="code">yield</span> keyword that is used to return a value. </ul>
+                <ul>The difference between the <span class="code">yield</span> and the <span class="code">return</span> keywords is that 
+                    by using <span class="code">yield</span>, the state of the value returned is remembered the next time <span class="code">yield</span> 
+                    is called</ul>
+                <ul>It’s also possible to iterate over the generator to invoke it multiple times</ul>
+        </li>
     </ul>
     <h3>Functional Programming</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>JavaScript has always supported functional-style programming due to functions being first-class objects.</li>
+        <li>The ability to pass functions as arguments, return them from other functions, and use anonymous functions and 
+            closures, are all fundamental elements of functional programming that JavaScript excels at</li>
+            <li>Functional programming is a programming paradigm.</li>
+            <li>Other examples of programming paradigms include object oriented programming and procedural programming</li>
+        <li>Pure Functions
+            <ul>A pure function is a function that adheres to the following rules:
+                <ol>1) <span style="color:yellow">The return value of a pure function should only depend on the values provided as arguments.</span> 
+                    It doesn't rely on values from somewhere else in the program.</ol>
+                <ol>2) <span style="color:yellow">There are no side-effects.</span> A pure function doesn't change any values or data elsewhere in the program. 
+                    It only makes non-destructive data transformations and returns new values, rather than altering any of the underlying data.</ol>
+                <ol>3) <span style="color:yellow">Referential transparency.</span> Given the same arguments, a pure function will always return the same result.</ol>
+            </ul>
+            <ul>In order to follow these rules, any pure function must have:
+                <ul>At least one argument; otherwise the return value must depend on something other than the arguments of the function, 
+                    breaking the first rule</ul>
+                <ul>A return value; otherwise there’s no point in the function (unless it has changed something else in the program – 
+                    in which case, it’s broken the 'no side-effects' rule).</ul>
+            </ul>
+            <ul>Pure functions help to make functional programming code more concise and predictable than in other programming styles</ul>
+            <ul>Referential transparency makes pure functions easy to test as they can be relied on to return the same values when the same arguments are provided</ul>
+            <ul>any return values can be cached</ul>
+            <ul><span style="color:rgb(255, 42, 227)">One point to note</span> is that using <span class="code">const</span> to declare variables will help to 
+                avoid destructive data transformations</ul>
+            <ul>Functional programming uses pure functions as the building blocks of a program</ul>
+            <ul>a program becomes a sequence of expressions based on the return values of pure functions</ul>
+            <ul>emphasis is placed on using <span style="color:yellow">function composition</span> to combine pure functions together to complete more complex tasks</ul>
+            <ul>By only performing a single task, pure functions are more flexible
+                <ul>They are not tightly coupled and they are more modular, as each function can be improved upon or replaced without interfering with any of the other functions</ul>
+            </ul>
+        </li>
+        <li>Higher-Order Functions
+            <ul>functions that accept another function as an argument, or return another function as a result, or both.</ul>
+            <ul>Closures are used extensively in higher-order functions as they allow us to create a generic function that can 
+                be used to then return more specific functions based on its arguments.</ul>
+            <ul>creating a closure around a function's arguments that keeps them 'alive' in a return function</ul>
+            <ul><span style="color:yellow">core tenets of functional programming: </span>
+                it allows generic higher-order functions to be used to return more specific functions based on particular parameters</ul>
+        </li>
     </ul>
     <h3>Getting Functional</h3>
     <ul>
