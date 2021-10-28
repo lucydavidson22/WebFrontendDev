@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Great Hikes (dynamic DOM example)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="hikes.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1>Great hikes</h1>
+      <ul id="hikes" class="hikeStyles"></ul>
+      <section id="comments"></section>
+    </main>
+
+    <script type="JavaScript">
+      import HikesController from './hikesController.js';
+      //on load grab the array and insert it into the page
+      const myHikesController = new HikesController('hikes');
+      window.addEventListener('load', () => {
+        myHikesController.showHikeList();
+      });
+    </script>
+    <a href="../../index.html">Home</a>
+  </body>
+</html>
