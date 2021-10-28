@@ -13,44 +13,130 @@
     <h3>Function Properties and Methods</h3>
     <ul>
         <li>all functions have a <span class="code">length</span> property that returns the number of parameters the function has</li>
-        <li>
-            Call and Apply Methods
-              <ul><span class="code">call()</span> method can be used to set the value of <span class="code">this</span> inside a function to an object</ul>
-              <ul>Mobile traffic from 2013-2014 increased by 20%. This means that more people are choosing to look
-                  at the web using mobile devices more and more. Webpages need to be fully equipped to handle this.</ul>
-            </li>
+        <li>Call and Apply Methods
+            <ul><span class="code">call()</span> method can be used to set the value of <span class="code">this</span> inside a function to an object</ul>
+            <ul>If the function that’s called requires any parameters, these need to be provided as arguments after the first argument, 
+                which is always the value of <span class="code">this</span>.</ul>
+                <ul>If a function doesn’t refer to an object as this in its body, it can still be called using the call() method, but you need to 
+                    provide null as its first argument. For example, we could call the square() function using the call() method, like so:<br>
+                    <span class="code">square.call(null, 4)<br>
+                    << 16</span></ul>
+                <ul><span class="code">apply()</span> method works in the same way, except the arguments of the function are provided as an array, even if there is only one argument</ul>
+        </li>
+        <li>Custom Properties
+            <ul>Memoization
+                <ul>useful feature of this is that it provides result caching</ul>
+                <ul>If a function takes some time to compute a return value, we can save the result in a <span class="code">cache</span> property. </ul>
+            </ul>
+        </li>
+        
     </ul>
     <h3>Immediately Invoked Function Expressions</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li style="color:yellow">IIFE – (pronounced 'iffy')</li>
+        <li>anonymous function that is invoked as soon as it is defined</li>
+        <li>The function also has to be made into an expression, which is done by placing the whole declaration inside parentheses</li>
+        <li>Good for keeping any variables wrapped up within the scope of the function and the global namespace is not polluted with lots of variable names.</li>
+        <li>Temporary Variables
+            <ul>Placing any code that uses the temporary variable inside an IIFE will ensure it’s only available while the IIFE is invoked, then it will disappear</ul>
+        </li>
+        <li>Initialization Code
+            <ul>IIFE can be used to set up any initialization code that there’ll be no need for again</ul>
+            <ul>IIFE will be invoked once, and can set up any variables, objects and event handlers when the page loads</ul>
+            <ul>much of this can be achieved in ES6 by simply placing the code inside a block</ul>
+            <ul>variables have block scope when <span class="code">const</span> or <span class="code">let</span> are used</ul>
+        </li>
+        <li>Safe Use of Strict Mode
+            <ul>One of the problems with simply placing <span class="code">'use strict'</span> at the beginning of a file is that it will enforce 
+                strict mode on all the JavaScript in the file</ul>
+            <ul>the recommended way to use strict mode is to place all your code inside an IIFE, like so:<br>
+                <span class="code">(function() { <br>'use strict';<br>// All your code would go inside this function <br>})();</span></ul>
+            
+        </li>
     </ul>
     <h3>Functions that Define and Rewrite Themselves</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>JavaScript means that a function is able to not only call itself, but define itself, and even redefine itself</li>
+        <li>assign an anonymous function to a variable that has the same name as the function.</li>
+        <li>Init-Time Branching
+            <ul>functions that rewrite themselves, known as init-time branching</ul>
+            <ul>Once the function has been invoked, it’s rewritten based on the browser’s capabilities</ul>
+        </li>
     </ul>
     <h3>Recursive Functions</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>function that invokes itself until a certain condition is met</li>
+        <li>useful when iterative processes are involved</li>
+        <li>Collatz Conjecture
+            <ul>If the number is even, divide it by two</ul>
+            <ul>If the number is odd, multiply it by three and add one
+                <ul>For example, if we start with the number 18, we would have the following sequence:</ul>
+                <ul>18, 9, 28, 14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1, 4, 2, 1, ...</ul></ul>
+        </li>
     </ul>
     <h3>Callbacks</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>functions passed to other functions as arguments and then invoked inside the function they are passed to</li>
+        <li>Event-driven Asynchronous Programming
+            <ul>used to facilitate event-driven asynchronous programming</ul>
+            <ul>non-blocking techniques can be used to ensure that the program continues to run</ul>
+            <ul>callback can be created that’s invoked when the event happens - so the code can run out of order, or <b>asynchronously</b></ul>
+            <ul>By using callbacks, we ensure that waiting for task such as <span class="code">click</span>, <span class="code">keyPress</span>,
+                completion of a file download, data returned from a database, or the result of a complex operation
+                to complete doesn't hold up the execution of other parts of the program</ul>
+                <ul><span style="color:red">Remember: </span>If an event only takes a small amount of time to happen, the program will still have to wait 
+                    until other parts of the program have executed before the callback is invoked.</ul>
+                <ul>a callback always has to wait for the current execution stack to complete before it’s invoked</ul>  
+        </li>
+        <li>Callback [Heck]
+            <ul style="color:yellow">The more callbacks that are used can result in messy and confusing'spaghetti code'</ul>
+            <ul>Callback hell is the term used to refer to this tangled mess of code</ul>
+        </li>
+        <li> Promises
+            <ul>A <b>promise</b> represents the future result of an asynchronous operation</ul>
+            <ul>don't do anything that can't already be achieved using callbacks, but they help simplify the process, and avoid the convoluted code</ul>
+            <ul>The Promise Life Cycle
+                <ul>When a promise is created, it calls an asynchronous operation and is then said to be pending</ul>
+                <ul>Once the operation has completed, the promise is said to have been settled, which can have two outcomes:
+                    <ul><span style="color:yellow">Resolved</span> ― the asynchronous operation was completed successfully.</ul>
+                    <ul><span style="color:yellow">Rejected</span> ― the asynchronous operation didn’t work as expected, wasn't successfully completed or resulted in an error.</ul>
+                </ul>
+            </ul>
+            <ul>Creating A Promise
+                <ul>created using a constructor function</ul>
+                <ul>takes a function called an <span style="color:yellow">executor</span> as an argument</ul>
+                <ul>executor initializes the promise and starts the asynchronous operation</ul>
+                <ul>also accepts two functions as arguments: the <span class="code">resolve()</span> function is called if the operation is successful, 
+                    and the <span class="code">reject()</span> function is called if the operation fails. The general layout of a promise can be seen 
+                    in the code below:<br>
+                    <span class="code">const promise = new Promise( (resolve, reject) => { <br>
+                        // initialization code goes here<br>if (success) {<br>resolve(value);<br>} else {<br>    reject(error);<br>}<br>});</span></ul>
+            </ul>
+            <ul>Dealing With A Settled Promise
+                <ul>Once a promise has been settled, the <span class="code">then()</span> method can be used to deal with the outcome</ul>
+                <ul>accepts two arguments:
+                    <ul>first is a fulfilment function that’s called when the promise is resolved. Any data returned from the resolve() function 
+                        will be passed along to this function</ul>
+                    <ul>second argument is a rejection function that’s called if the promise is rejected. Similar to the fulfilment function, 
+                        the rejection function receives any data returned from the reject() function</ul>
+                </ul>
+            </ul>
+            <ul>Chaining Multiple Promises
+                <ul>If each function that performs an asynchronous operation returns a promise, we can chain the then() methods 
+                    together to form a sequential piece of code that’s easy to read</ul>
+                <ul>Each promise will only begin once the previous promise has been settled.</ul>
+            </ul>
+            <ul>Async Functions
+                <ul>These functions are preceded by the async keyword and allow you to write asynchronous code as if it was synchronous</ul>
+                <ul>achieved by using the await operator before an asynchronous function.</ul>
+            </ul>
+            <ul>Generalized Functions
+                <ul>instead of having lots of specific functions, one function can be written that accepts a callback.</ul>
+            </ul>
+            <ul>Functions That Return Functions
+                <ul>We've just seen that functions can accept another function as an argument (a callback), but they can also return a function.</ul>
+            </ul>
+        </li>
     </ul>
     <h3>Closures</h3>
     <ul>
