@@ -5,7 +5,7 @@ class CommentModel {
       // get the initial list of comments out of local storage if it exists
       this.comments = readFromLS(this.type) || [];
     }
-    // I decided I could combine my getAllComments, and filterCommentsByName methods into one by passing in an optional query argument
+    // combine my getAllComments and filterCommentsByName methods into one by passing in an optional query argument
     getComments(q = null) {
       if (q === null) {
         // no query, get all comments of the type
@@ -68,9 +68,7 @@ class CommentModel {
     }
   
     addSubmitListener(postName) {
-      // use element.ontouchend to avoid more than one listener getting attached at a time to the button.
-      document.getElementById('commentSubmit').ontouchend = () => {
-        // debugger;
+      document.getElementById('commentSubmit').onclick = () => {
         this.model.addComment(
           postName,
           document.getElementById('commentEntry').value
@@ -83,12 +81,10 @@ class CommentModel {
       try {
         const parent = document.getElementById(this.commentElementId);
         if (!parent) throw new Error('comment parent not found');
-        // check to see if the commentUI code has been added yet
         if (parent.innerHTML === '') {
           parent.innerHTML = commentUI;
         }
         if (q !== null) {
-          // looking at one post, show comments and new comment button
           document.querySelector('.addComment').style.display = 'block';
           this.addSubmitListener(q);
         } else {
