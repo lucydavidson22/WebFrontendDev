@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7 Notes</title>
-    <link rel="stylesheet" href="../week1/style1.css" />
+    <title>Further Functions Notes</title>
+    <link rel="stylesheet" href="../../week1/style1.css" />
 </head>
 <body style="text-align: left;">
-    <h1>Week 7 Notes</h1>
+    <h1>Chapter 11 Notes</h1>
     <p>In JavaScript, functions are first-class objects, which means they can be passed around in the same way as every other value.</p>
     <h3>Function Properties and Methods</h3>
     <ul>
@@ -50,17 +50,21 @@
             <ul>One of the problems with simply placing <span class="code">'use strict'</span> at the beginning of a file is that it will enforce 
                 strict mode on all the JavaScript in the file</ul>
             <ul>the recommended way to use strict mode is to place all your code inside an IIFE, like so:<br>
-                <span class="code">(function() { <br>'use strict';<br>// All your code would go inside this function <br>})();</span></ul>
+                <span class="code">&emsp;(function() { 
+                    <br>&emsp;&emsp;'use strict';
+                    <br>&emsp;&emsp;// All your code would go inside this function 
+                    <br>&emsp;})();</span></ul>
             
         </li>
     </ul>
     <h3>Functions that Define and Rewrite Themselves</h3>
     <ul>
-        <li>JavaScript means that a function is able to not only call itself, but define itself, and even redefine itself</li>
+        <li>JavaScript means that a function is able to not only call itself, but <span style="color:yellow">define itself</span>, 
+            and <span style="color:yellow">even redefine itself</span></li>
         <li>assign an anonymous function to a variable that has the same name as the function.</li>
         <li>Init-Time Branching
             <ul>functions that rewrite themselves, known as init-time branching</ul>
-            <ul>Once the function has been invoked, it’s rewritten based on the browser’s capabilities</ul>
+            <ul>Once the function has been invoked, it’s <u>rewritten based on the browser’s capabilities</u></ul>
         </li>
     </ul>
     <h3>Recursive Functions</h3>
@@ -110,7 +114,13 @@
                     and the <span class="code">reject()</span> function is called if the operation fails. The general layout of a promise can be seen 
                     in the code below:<br>
                     <span class="code">const promise = new Promise( (resolve, reject) => { <br>
-                        // initialization code goes here<br>if (success) {<br>resolve(value);<br>} else {<br>    reject(error);<br>}<br>});</span></ul>
+                        &emsp;// initialization code goes here<br>
+                        &emsp;if (success) {<br>
+                            &emsp; &emsp;resolve(value);<br>
+                            &emsp;} else {<br>
+                                &emsp; &emsp;reject(error);<br>
+                                &emsp;}<br>
+                    });</span></ul>
             </ul>
             <ul>Dealing With A Settled Promise
                 <ul>Once a promise has been settled, the <span class="code">then()</span> method can be used to deal with the outcome</ul>
@@ -150,7 +160,7 @@
                         declared inside the scope of the function in which it’s declared (the 'outer' function)</ul>
         </li>
         <li>Returning Functioins
-            <ul>closure is formed when the inner function is returned by the outer function, maintaining access to any 
+            <ul>closure is formed <u>when the inner function is returned by the outer function</u>, maintaining access to any 
                 variables declared inside the enclosing function</ul>
             <ul>closure doesn't just have access to the value of a variable, it can also change the value of the variable 
                 long after the function in which it was originally declared has been invoked</ul>
@@ -167,7 +177,7 @@
             <ul>To define a generator function, an asterisk symbol (*) is placed after the function declaration, like so: <br>
                 <span class="code">
                 function* exampleGenerator() {<br>
-                // code for the generator goes here<br>
+                    &emsp;// code for the generator goes here<br>
                 }</span></ul>
                 <ul>Calling a generator function doesn’t actually run any of the code in the function; it returns a Generator 
                     object that can be used to create an iterator that implements a next() method that returns a value every 
@@ -182,8 +192,8 @@
     <h3>Functional Programming</h3>
     <ul>
         <li>JavaScript has always supported functional-style programming due to functions being first-class objects.</li>
-        <li>The ability to pass functions as arguments, return them from other functions, and use anonymous functions and 
-            closures, are all fundamental elements of functional programming that JavaScript excels at</li>
+        <li>fundamental elements of functional programming that JavaScript excels at: the ability to pass functions as arguments, 
+            return them from other functions, and use anonymous functions and closures </li>
             <li>Functional programming is a programming paradigm.</li>
             <li>Other examples of programming paradigms include object oriented programming and procedural programming</li>
         <li>Pure Functions
@@ -220,20 +230,65 @@
             <ul><span style="color:yellow">core tenets of functional programming: </span>
                 it allows generic higher-order functions to be used to return more specific functions based on particular parameters</ul>
         </li>
+        <li>Currying
+            <ul>a process that involves the partial application of functions</ul>
+            <ul>named after the logician Haskell Curry — not the spicy food</ul>
+            <ul>A function is said to be curried when not all arguments have been supplied to the function, so it returns 
+                another function that retains the arguments already provided, and expects the remaining arguments that were 
+                omitted when the original function was called</ul>
+                <ul>final result is only returned once all the expected arguments have eventually been provided</ul>
+                <ul>relies on higher-order functions that are able to return partially applied functions</ul>
+                <ul>All curried functions are higher-order functions because they return a function, but not all higher-order 
+                    functions are curried</ul>
+                <ul>The <span class="code">power()</span> function above is an example of a higher-order function that can be curried 
+                    as it will expects two arguments, but will return another, curried function, if the only one argument is provided</ul>
+                <ul>allows you to turn a single function into a series of functions instead</ul>
+                <ul>A General Curry Function
+                    <ul>It’s possible to use a curry() function to take any function and allow it to be partially applied</ul>
+                    <ul>The curry function is the following:
+                        <span class="code"><br>function curry(func,...oldArgs) { <br>
+                            &emsp;return function(...newArgs) { <br>
+                                &emsp;&emsp;const allArgs = [...oldArgs,...newArgs];<br>
+                                &emsp;&emsp;return func(...allArgs);<br>
+                                &emsp;}<br>
+                        }</span>
+                    </ul>
+                    <ul>This function accepts a function as its first argument, which is stored as <span class="code">func</span>. 
+                        The rest operator is used to collect all the other arguments together as <span class="code">...oldArgs</span>. 
+                        These are the arguments of the function that is the first argument. It then returns a function that accepts 
+                        some new arguments that are stored in the variable <span class="code">...newArgs</span>. These are then 
+                        lumped together with <span class="code">...oldArgs</span> to make <span class="code">...newArgs</span> 
+                        using the spread operator. The return value of this function is obtained by invoking the original function, 
+                        which is accessed using a closure over <span class="code">func</span> and passed the combined 
+                        arguments <span class="code">...allArgs</span></ul>
+                </ul>
+        </li>
     </ul>
     <h3>Getting Functional</h3>
     <ul>
-        <li></li>
-        <li>
-            <ul></ul>
-            <ul></ul>
-            </li>
+        <li>Advocates of functional programming can be quite partisan about its benefits</li>
+        <li>even adopting some of its principles, such as keeping functions as pure as possible, 
+            and keeping changes in state to a minimum, will help improve the standard of your programming</li>
     </ul>
-   
-        <h3>Questions:</h3>
-          <ol>
-            
-          </ol>
-      </ul>
+    <h3>Chapter Summary</h3>
+    <ul>
+        <li>Functions have built-in properties such as length, but can have custom properties added.</li>
+        <li>All functions have call() and apply() methods that can invoke a function with the value of this bound to an object that is provided as an argument.</li>
+        <li>Immediately Invoked Function Expressions or IIFEs are functions that are enclosed in parentheses and immediately followed by double parentheses so they’re invoked. They are useful for namespacing variables and setting default values.</li>
+        <li>Functions are able to dynamically redefine themselves in the body of the function, depending on certain conditions.</li>
+        <li>A recursive function will keep invoking itself until a certain condition is met.</li>
+        <li>A callback is a function that’s provided as an argument to another function.</li>
+        <li>Callbacks are frequently used in asynchronous programming as part of the event loop. This means that a program can continue to run in a single thread while waiting for another task to be completed.</li>
+        <li>Promises can be used instead of callbacks to deal with multiple asynchronous actions in sequence. They also provide a nicer mechanism for handling errors.</li>
+        <li>Functions that return other functions are known as higher-order functions.</li>
+        <li>A closure is the process of keeping a reference to a variable available outside the scope of the function it was originally defined in.</li>
+        <li> A generator is created by placing an asterisk character (*) after the function keyword.</li>
+        <li>A generator function will return an iterator object that provides a next() method, which returns the next value in a sequence that is defined in the generator function.</li>
+        <li>Functional programming involves breaking processes down into steps that can be applied as a series of functions.</li>
+        <li>Pure functions are functions that don't rely on the state of the code they are called from, have no side-effects, and always give the same result when given the same arguments (referential transparency).</li>
+        <li>Currying or partial application is the process of applying one argument at a time to a function. A new function is returned until all the arguments have been used.</li></ul>
+        
+    Examples can be found <a href="https://www.sitepoint.com/premium/books/javascript-novice-to-ninja-2nd-edition/read/11/k01nwuzs">here.</a>
+    <a href="../../index.html">Home</a>
 </body>
 </html>

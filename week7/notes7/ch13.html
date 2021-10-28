@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Notes</title>
+    <link rel="stylesheet" href="../../week1/style1.css" />
+</head>
+<body style="text-align: left;">
+    <h1>Chapter 13 Notes</h1>
+    <p>A technique that allows web pages to communicate asynchronously with a server, and it dynamically 
+        updates web pages without reloading</p>
+    <p>Enables data to be sent and received in the background, as well as portions of a page to be 
+        updated in response to user events, while the rest of the program continues to run.</p>
+    <h3>Clients and Servers</h3>
+    <ul>
+        <li>The internet can be separated into two parts: clients and servers
+            <ul>client, such as a web browser, will request a resource (usually a web page) from a 
+                server, which processes the request and sends back a response to the client</ul>
+        </li>
+        <li>Ajax allows JavaScript to request resources from a server on behalf of the client. 
+            The resources requested are usually JSON data or small fragments of text or HTML rather 
+            than a whole web page</li>
+        <li>a server is required when requesting resources using Ajax</li>
+    </ul>
+
+    <h3>A Brief History of Ajax</h3>
+    <ul>
+        <li>In 1999, Microsoft implemented the XMLHTTP ActiveX control in Internet Explorer 5. 
+            <ul>It was developed initially for the Outlook web client, and allowed data to be sent 
+            asynchronously in the background using JavaScript. Other browsers implemented this technique, 
+            although it remained a relatively unknown feature, and was rarely used.</ul></li>
+        <li>Asynchronous loading techniques started to be noticed when Google launched Gmail and Google 
+            Maps in 2004 and 2005 respectively. </li>
+        <li>The term 'Ajax' was coined by Jesse James Garrett in 2005 in the article “Ajax: A New Approach 
+            to Web Applications,” where he referred to techniques being used by Google in its recent web applications.</li>
+        <li> Ajax was a neat acronym that referred to the different parts of the process being used: Asynchronous 
+            JavaScript and XML:</li>
+        <li>Asynchronous
+            <ul>When a request for data is sent, the program doesn’t have to stop and wait for the response. 
+            It can carry on running, waiting for an event to fire when a response is received. By using callbacks 
+            to manage this, programs are able to run in an efficient way, avoiding lag as data is transferred back and forth.</ul></li>
+        <li>JavaScript
+            <ul>JavaScript was always considered a 'front-end' language, not used to communicate with the server. Ajax enabled 
+                JavaScript to send requests and receive responses from a server, allowing content to be updated in real time.</ul>
+        </li>
+        <li>XML
+            <ul>When the term Ajax was originally coined, XML documents were often used to return data.
+                Many different types of data can be sent, but by far the most commonly used in Ajax nowadays is JSON, 
+                which is more lightweight and easier to parse than XML. (Although it has never really taken off, the 
+                term Ajaj is sometimes used to describe the technique.) JSON also has the advantage of being natively 
+                supported in JavaScript, so you can deal with JavaScript objects rather than having to parse XML files 
+                using DOM methods.</ul>
+        </li>
+    </ul>
+
+    <h3>The Fetch API</h3>
+    <ul>
+        <li>which is currently a living standard for requesting and sending data asynchronously across a network.</li>
+        <li>uses promises to avoid callback hell, and also streamlines a number of concepts that had become cumbersome 
+            when using the XMLHttpRequest object</li>
+        <li>Basic Usage
+            <ul>Fetch API provides a global <span class="code">fetch()</span> method that only has one mandatory 
+                argument, which is the URL of the resource you wish to fetch</ul>
+                <ul>the fetch() method returns a promise that resolves to the response returned from the URL 
+                    that was provided as an argument</ul>
+        </li>
+        <li>Response Interface
+            <ul>Fetch API introduced the Response interface that deals with the object that’s returned when the promise is fulfilled</ul>
+            <ul>Response objects have a number of properties and methods that allow us to process the response effectively</ul>
+            <ul>each response object has an <span class="code">ok</span> property that checks to see if the response is successful. 
+                This is based on the 
+                HTTP status code, which can be accessed using the <span class="code">status</span> property.
+                <ul>This will usually be <span class="code">200</span> if the response was successful, 
+                    <span class="code">201</span><span style="color:yellow"> if a resource was created</span>, 
+                    or <span class="code">204</span><span style="color:yellow"> when the request is successful but no content is returned</span>. 
+                    The <span class="code">ok</span> property will return <span class="code">true</span> if the 
+                    <span class="code">status</span> property is between 200 and 299. We need to manually check if this happens 
+                    because the promise will only be rejected in the case of a network error, rather than something like a 
+                    '404 page not found error', which is still considered a successful request in terms of the promise.</ul></ul>
+            <ul>Some other properties of the Response object are:
+                <ul><span class="code">headers</span> – A Headers object (see later section) containing any headers 
+                    associated with the response</ul>
+                <ul><span class="code">url</span> – A string containing the URL of response</ul>
+                <ul><span class="code">redirected</span> – A boolean value that specifies if the response is the result of a redirect</ul>
+                <ul><span class="code">type</span> - A string value of 'basic', 'cors', 'error' or 'opaque'. A value of 'basic' is used 
+                    for a response from the same domain. A value of 'cors' means the data was received from a valid cross-origin 
+                    request from a different domain. A value of 'opaque' is used for a response received from 'no-cors' request from 
+                    another domain, which means access to the data will be severely restricted. A value of 'error' is used when a 
+                    network error occurs.</ul>
+            </ul>
+            <ul>Redirects
+                <ul><span class="code">redirect()</span> method can be used to redirect to another URL by creating  a new promise that 
+                    resolves to the response from the redirected URL</ul>
+            </ul>
+            <ul>Text Responses
+                <ul><span class="code">text()</span> method takes a stream of text from the response, reads it to completion and then 
+                    returns a promise that resolves to a USVSting object that can be treated as a string in JavaScript.</ul>
+            </ul>
+            <ul>File Responses
+                <ul><span class="code">blob()</span> method is used to read a file of raw data, such as an image or a spreadsheet.</ul>
+                <ul>once it has read the whole file, it returns a promise that resolves with a <span class="code">blob()</span> object.</ul>
+            </ul>
+            <ul>JSON Responses
+                <ul><span class="code">json()</span> method is used to deal with these by transforming a stream of JSON data into a 
+                    promise that resolves to a JavaScript object.</ul>
+            </ul>
+            <ul>Creating Responses Objects
+                <ul>you can also create your own response objects using a constructor function</ul>
+            </ul>
+            <ul>Request Interface
+                <ul>We can get more fine-grained control over the request being made by providing a <span class="code">Request</span> 
+                    object as an argument. This allows a number of options to be set about the request.</ul>
+                <ul>Request objects are created using the <span class="code">Request()</span> constructor, and include the 
+                    following properties:
+                    <ul><span class="code">url</span> – The URL of the requested resource (the only property that is required).</ul>
+                    <ul><span class="code">method</span> – a string that specifies which HTTP method should be used for the request. 
+                        By default, this is 'GET'.</ul>
+                    <ul><span class="code">headers</span> – This is a <span class="code">Headers</span> object (see later section) that provides details of the 
+                        request's headers.</ul>
+                    <ul><span class="code">mode</span> – Allows you to specify if CORS is used or not. CORS is enabled by default.</ul>
+                    <ul><span class="code">cache</span> – Allows you to specify how the request will use the browser's cache. For 
+                        example, you can force it to request a resource and update the cache with the result, or you can force it to only 
+                        look in the cache for the resource.</ul>
+                    <ul><span class="code">credentials</span> – Lets you specify if cookies should be allowed with the request.</ul>
+                    <ul><span class="code">redirect</span> – Specifies what to do if the response returns a redirect. There’s a choice of 
+                        three values: 'follow' (the redirect is followed), 'error' (an error is thrown) or 'manual' (the user has to 
+                        click on a link to follow the redirect).</ul>
+                </ul>
+                <ul>A constructor function is used to create a new Request object</ul>
+                <ul>The <span class="code">url</span> property is the first argument, and is required. 
+                    The second argument is an object made up of any of the other properties listed above</ul>
+                <ul>Headers Interface
+                    <ul>headers are used to pass on any additional information about a request or response</ul>
+                    <ul>information contained in headers includes the file-type of the resource, cookie information, 
+                        authentication information and when the resource was last modified</ul>
+                        <ul>can be used to create a Headers object, which can then be added as a property of Request and Response objects.</ul>
+                        <ul><span class="code">has()</span> – Can be used to check if the headers object contains the header provided as an argument.</ul>
+                        <ul><span class="code">get()</span>  - Returns the value of the header provided as an argument</ul>
+                        <ul><span class="code">set()</span> – Can be used to set a value of an already existing header, or create a new 
+                            header with the value provided as an argument if it does not already exist.</ul>
+                        <ul><span class="code">append()</span> – Adds a new header to the headers object.</ul>
+                        <ul><span class="code">delete()</span> – Removes the header provided as an argument.</ul>
+                        <ul><span class="code">keys(), values() </span>and <span class="code">entries()</span>  – Iterators that can be 
+                            used to iterate over the headers key, values or entries (key and value pairs).</ul>
+                </ul>
+                <ul>Putting It All Together
+                    <ul>We can use the Headers, Request and Response objects to put together a typical example that sets up the 
+                        URL, Request and Headers before calling the <span class="code">fetch()</span> method:<br>
+                        <span class="code">
+                            const url = 'https:example.com/data';<br>
+                            const headers = new Headers({ 'Content-Type': 'text/plain', 
+                            'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })<br><br>
+
+                            const request = (url,{<br>
+                                &emsp;&emsp;headers: headers<br>
+                            })<br><br>
+
+                            fetch(request)<br>
+                            .then( function(response) {<br>
+                                &emsp;&emsp;if(response.ok) {<br>
+                                    &emsp;&emsp;&emsp;return response;<br>
+                                    &emsp;&emsp;}<br>
+                                    &emsp;&emsp;throw Error(response.statusText);<br>
+                            })<br>
+                            .then( response => // do something with response )<br>
+                            .catch( error => console.log('There was an error!') )<br>
+                        </span>
+                    </ul>
+                </ul>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Receiving Information</h3>
+    <ul>
+        <li><a href="ajax.html">Ajax Example</a></li>
+    </ul>
+
+    <h3>Sending Information</h3>
+    <ul>
+        <li>We can also use Ajax to send information. This can be a variety of formats, but is usually a JSON string</li>
+        <li>This <a href="todo.html">To Do</a> will output an id to the console</li>
+    </ul>
+
+    <h3>FormData</h3>
+    <ul>
+        <li>Fetch API includes the FormData interface, which makes it much easier to submit information in forms using Ajax</li>
+        <li>A FormData instance is created using a constructor function:<br>
+            <span class="code">const data = new FormData();</span></li>
+    </ul>
+
+    <h3>A Living Standard</h3>
+    <ul>
+        <li>The Fetch API is, at the time of writing, what is known as a 'living standard', which means that the 
+            specification is being developed 'in the wild'</li>
+        <li>despite it being available to use, it’s still subject to change as developers, browser vendors 
+            and end-users provide feedback about how it works</li>
+            <li>If you don't want to 'live on the edge', you could consider using a library to take care of Ajax 
+                requests. The advantage of this approach is that the library will take care of any implementation 
+                details behind the scenes – it will use the most up-to-date methods, such as the 
+                <span class="code">fetch</span> API, if it's supported, and fallback on using older methods, if required.</li>
+    </ul>
+
+    <h3>Chapter Summary</h3>
+    <ul>
+        <li>Ajax is a technique for sending and receiving data asynchronously in the background.</li>
+        <li>The data can be sent in many forms, but it is usually in JSON.</li>
+        <li>Ajax can be used for making partial page updates without having to do a full page reload.</li>
+        <li>Ajax can be used for communicating with external APIs.</li>
+        <li>Ajax requests can be made using the Fetch API.</li>
+        <li>The Response interface allows you to control the response received from a request or to create your own response objects.</li>
+        <li>The Request interface allows you to create a request object that contains information about the request being made, such as the URL and headers.</li>
+        <li>The Headers interface allows you to create HTTP headers that can be added to a request or response object.</li>
+        <li>Requests can retrieve data using a GET request, or send data using a POST request.</li>
+        <li>The FormData interface makes it easier to send data from forms.</li></ul>
+
+    <a href="../../index.html">Home</a>
+    Examples can be found <a href="https://www.sitepoint.com/premium/books/javascript-novice-to-ninja-2nd-edition/read/13">here.</a>
+    
+</body>
+</html>
