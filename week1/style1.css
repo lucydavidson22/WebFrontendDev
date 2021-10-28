@@ -29,16 +29,6 @@ ul li ul::before {
     display: inline-block;
 }
 
-/* ul li ul li::before {
-  content: " - ";
-  display: inline-block;
-}
-
-ul li ul li ul::before {
-  content: " -- ";
-  display: inline-block;
-} */
-
 ul li ul ul::before {
   content: " - ";
   display: inline-block;
