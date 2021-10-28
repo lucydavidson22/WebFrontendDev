@@ -25,6 +25,11 @@ ul li ul::before {
     display: inline-block;
 }
 
+ul li ul li::before {
+  content: "💡";
+  display: inline-block;
+}
+
 a:link, a:visited {
     background-color: rgb(57, 159, 255);
     color: white;
@@ -37,4 +42,8 @@ a:link, a:visited {
   
   a:hover, a:active {
     background-color: rgb(190, 124, 221);
+  }
+
+  .code{
+    font-family:'Courier New', Courier, monospace;
   }
