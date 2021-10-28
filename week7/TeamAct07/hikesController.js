@@ -1,5 +1,5 @@
 // The controller needs access to both the model and the view...so let's import them
-import HikeModel from './hikeModel.js.js';
+import HikeModel from './hikesModel.js.js';
 import HikesView from './hikesView.js';
 //  we also need the new comments class to add that functionality
 import Comments from './comments.js';
