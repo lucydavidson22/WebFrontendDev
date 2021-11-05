@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas, SVG, and Drag and Drop</title>
+    <link rel="stylesheet" href="../../week1/style1.css">
+</head>
+<body style="text-align: left;">
+    <h1>Chapter 12 Notes</h1>
+    <h3>Canvas</h3>
+    <ul>
+        <li>With HTML5’s Canvas API, we can draw anything we can imagine, all through JavaScript</li>
+        <li>With canvas, we can draw shapes and lines, arcs and text, gradients and patterns</li>
+        <li>A Bit of Canvas History
+            <ul>Canvas was first developed by Apple.</ul>
+            <ul>There’s some good news here. If you aspire to do development for the iPhone or iPad 
+                (referred to jointly as iOS), or for the Mac, what you learn in canvas should help you 
+                understand some of the basic concepts of Quartz 2D.</ul>
+        </li>
+        <li>Creating a <span class=code>canvas</span> Element
+            <ul>The first step to using canvas is to add a canvas element to the page: 
+                <span class=code>< canvas>
+                    Sorry! Your browser doesn’t support Canvas.
+                < /canvas></span></ul>
+            <ul>The text in between the canvas tags will only be shown if the canvas element is not supported by the visitor’s browser.</ul>
+            <ul><a href="/week8/notes8/canvas.html">Canvas</a></ul>
+        </li>
+        <li>Note: Why not set width and height using CSS?
+            <ul>You may be asking yourself, why not set the width and height via CSS? It’s because the width and height attributes determine how large the canvas’s coordinate system is. </ul>
+            <ul>If we don’t specify width and height, the canvas element will default to a width of 300 and a height of 150</ul>            
+        </li>
+        <li>Drawing on the Canvas
+            <ul>Note: A Canvas Playground
+                <ul>We have created a separate file at The HTML5 Herald, canvas.html, for you to see the examples outlined in this chapter.</ul>
+            </ul>
+            <ul>Getting the Context
+                <ul>Once we’ve stored our canvas element in a variable, we then set up the canvas’s context. </ul>
+                <ul>The context is the place where your drawing is rendered. </ul>
+            </ul>
+            <ul>Note: What about 3D?
+                <ul>WebGL is a new API for 3D graphics being managed by the Khronos Group, with a WebGL working group that includes Apple, Mozilla, Google, and Opera</ul>
+            </ul>
+            <ul>Filling Our Brush with Color
+                <li>Both strokeStyle and fillStyle are set on a context object, and both take one of three values: a string representing a color, a CanvasGradient object, or a CanvasPattern object</li>
+                <li>Start by choosing a color string to style the stroke</li>
+            </ul>
+            <ul>Drawing Other Shapes by Creaating Paths
+                <li>To draw more interesting shapes, we must first lay out the path of the shape.</li>
+                <li>Paths create a blueprint for your lines, arcs, and shapes, but paths are invisible until you give them a stroke!</li>
+                <li>With more complex shapes, we need to take three steps: layout the path, stroke the path, and fill the path. As with drawing rectangles, we can just stroke the path, or fill the path—or we can do both.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>SVG</h3>
+    <ul>
+        <li>SVG stands for <b>Scalable Vector Graphics</b>, a specific file format that allows you to describe vector graphics using XML.</li>
+        <li>We can use SVG to do many of the same tasks we can do with canvas, including drawing paths, shapes, text, gradients, and patterns. </li>
+        <li>Note: What's XML
+            <ul>XML stands for <b>eXtensible Markup Language</b></ul>
+        </li>
+    <li>Drawing in SVG
+        <ul>Drawing a circle in SVG is arguably easier than drawing a circle with canvas.</ul>
+        <ul><a href="../notes8/svg.html">SVG Examples</a></ul>
+        </li>
+    <li>SVG Filters
+        <ul>To make our progress spinner match our page a bit better, we can use a filter in Inkscape to make it black and white. </ul>
+        <ul>A safer approach would be to avoid using filters, and instead modify the color of the original image.</ul>
+    </li>
+    <li>Using the Raphael Library
+        <ul>Raphaël is an open-source JavaScript library that makes drawing and animating with SVG much easier.</ul>
+        <ul><a href="http://raphaeljs.com/">Raphaël</a> is an open-source JavaScript library that makes drawing and animating with SVG much easier.</ul>
+    </li>
+</ul>
+
+    <h3>Canvas Versus SVG</h3>
+    <ul>
+        <li>you may be asking yourself which is the right one to use? The answer is: it depends on what you’re doing.</li>
+        <li>Both canvas and SVG allow you to draw custom shapes, paths, and fonts.</li>
+        <table>
+            <tr>
+                <th>Canvas</th>
+                <th>SVG</th>
+            </tr>
+            <tr>
+                <th> - Canvas allows for pixel manipulation, as we saw when we turned our video from color to black and white. 
+                    <br> - One downside of canvas is that it operates in what’s known as immediate mode. 
+                    <br> - This means that if you ever want to add more to the canvas, you’re unable to simply add to what’s already there. 
+                    <br> - Every time you finish drawing a shape, the canvas no longer has access to that shape, because it won’t persist as an object that you can modify. 
+                    <br> - So if you want to add to what you’ve already drawn on the canvas, you must redraw the new shape from scratch. 
+                    <br> - Still, canvas does allow you to save the images you create to a PNG or JPEG file.
+                    <br> - There’s also no access to what’s drawn on the canvas via the DOM. Because of this, canvas is much faster than SVG, and canvas is generally the better choice if you’re looking to design a game requiring lots of animations.
+                </th>
+
+                <th> - What you draw to SVG is accessible via the DOM, because its mode is retained mode, meaning that the structure of the image is preserved in the XML document that describes it. <br>
+                     - SVG also has, at this time, a more complete set of tools to help you work with it, such as the Raphaël library and Inkscape. <br>
+                     - However, since SVG is a file format—rather than a set of methods that allows you to dynamically draw on a surface—you can’t manipulate SVG images the way you can manipulate pixels on canvas. <br>
+                     - It would have been impossible, for example, to use SVG to convert our color video to black and white as we did with canvas.
+                </th>
+            </tr>
+        </table>
+        <li>In summary, if you need to paint pixels to the screen and have no concerns about the ability to retrieve and modify your shapes, canvas is probably the better choice. If, on the other hand, you need to be able to access and change specific aspects of your graphics, SVG might be more appropriate.</li>
+    </li>
+    </ul>
+
+    <h3>Drag and Drop</h3>
+    <ul>
+        <li>This API allows us to specify that certain elements are draggable, and then specify what should happen when these draggable elements are dragged over or dropped onto other elements on the page.</li>
+        <li>There are several steps to adding drag and drop to your page:
+            <ol>
+                <li>Set the <span class=code>draggable</span> attribute on any HTML elements you’d like to be draggable.</li>
+                <li>Add an event listener for the <span class=code>dragstart</span> event on any draggable HTML elements.</li>
+                <li>Add an event listener for the <span class=code>dragover</span> and <span class=code>drop</span> events on any elements that you want to have accept dropped items.</li>
+            </ol>
+        </li>
+        <li>Making Elements Draggable
+            <ul>The next step is to make our images draggable. In order to do that, we add the draggable attribute to them, and set the value to true</ul>
+            <ul> <span style="color: yellow">Important: <span class=code>draggable</span> is not Boolean!</span> so you have to explicitly set it to true</ul>
+        </li>
+        <li>The DataTransfer Object
+            <ul>These objects allow us to set and get data about the elements that are being dragged.</ul>
+            <ul>Specifically, DataTransfer lets us define two pieces of information:
+                <ul>the type of data we’re saving of the draggable element</ul>
+                <ul>the value of the data itself</ul>
+            </ul>
+        </li>
+        <li>
+            Accepting Dropped Elements
+            <li>elements on the page aren’t set up to receive dragged items. In order to override the default behavior on a specific element, we must stop it from happening</li>
+        </li>
+    </ul>
+
+    <br>
+    <hr>
+    Examples can be found <a href="https://www.sitepoint.com/premium/books/html5-css3-for-the-real-world-2nd-edition/read/12/jzj69b7l">here.</a>
+    <a href="../../index.html">Home</a>
+
+  
+</body>
+</html>

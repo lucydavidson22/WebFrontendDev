@@ -29,6 +29,7 @@ ul li ul::before {
     display: inline-block;
 }
 
+
 ul li ul ul::before {
   content: " - ";
   display: inline-block;
@@ -36,6 +37,11 @@ ul li ul ul::before {
 
 ul li ul ul ul::before {
   content: " -- ";
+  display: inline-block;
+}
+
+ul li ol li::before {
+  content: " ";
   display: inline-block;
 }
 
@@ -57,3 +63,19 @@ a:link, a:visited {
     font-family:'Courier New', Courier, monospace;
     color:rgb(142, 253, 51);
   }
+
+
+  /* Canvas CSS Settings */
+  .myCanvas {
+    border: dotted 2px black;
+    margin: 0 20px;
+}
+
+/* Table Styling */
+table, th, tr {
+  font-size: small;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 10px;
+  border: 2px solid white;
+  border-collapse: collapse;
+}
