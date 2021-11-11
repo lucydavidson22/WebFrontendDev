@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(53, 54, 54);
+    color:#d16;
+    text-align: center;
+}
+
+#square {
+    margin: 100px;
+    width: 100px;
+    height: 100px;
+    /* background: #d16; */
+    background: #cc0;
+    animation: spin 4s linear infinite;
+
+    @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(3600deg); } }
+}
+
+a:link, a:visited {
+    background-color: rgb(57, 159, 255);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(190, 124, 221);
+  }

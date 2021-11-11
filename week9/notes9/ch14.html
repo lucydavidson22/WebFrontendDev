@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 14</title>
+    <link rel="stylesheet" href="../../week1/style1.css" />
+</head>
+<body style="text-align: left;">
+    <h1>HTML5 APIs</h1>
+    <p>Every JavaScript environment has a global object. Any variables that are created in the global scope are actually properties of this object, and any functions are methods of it. In a browser environment the global object is the window object, which represents the browser window that contains a web page.</p>
+
+    <h3>HTML5</h3>
+    <ul>
+        <li>HTML 5.1 has already become the latest standard, and HTML 5.2 is in development.</li>
+        <li>HTML5 specification is separated into modules that allow different features to be developed at different paces then implemented without having to wait for other features to be completed.</li>
+    </ul>
+
+    <h3>The <span class=code>data-</span> Attribute</h3>
+    <ul>
+        <li>a way of embedding data in a web page using custom attributes that are ignored by the browser.</li>
+        <li>also private to a page, so are not intended to be used by an external service – their sole purpose is to be used by a JavaScript program. 
+        </li>
+        <li>The names of these attributes can be decided by the developer, but they must use the following format:
+            <ul>Start with data-.</ul>
+            <ul>Contain only lowercase letters, numbers, hyphens, dots, colons or underscores.</ul>
+            <ul>Include an optional string value.</ul>
+        </li>
+    </ul>
+
+    <h3>HTML5 APIs</h3>
+    <ul>
+        <li>Hardware evolves quickly, and APIs are frequently introduced to give developers access, 
+            and control new features that appear in the latest devices.</li>
+        <li>HTML5 Web Storage
+            <ul>Web Storage API provides a key-value store on the client’s computer that is 
+                similar to using cookies but has fewer restrictions, more storage capacity, 
+                and is generally easier to use</ul>
+            <ul>Making it perfect for storing information about users, as well as storing 
+                application-specific information that can then be used during future sessions.</ul>
+            <ul>The Web Storage API has some crucial differences with cookies:
+                <ul>Information stored is not shared with the server on every request.</ul>
+                <ul>Information is available in multiple windows of the browser (but only if the domain is the same).</ul>
+                <ul>Storage capacity limit is much larger than the 4KB limit for cookies ( There is no actual limit in the specification, but most browsers have a limit set at 5GB per domain.).</ul>
+                <ul>Any data stored does not automatically expire as it does with cookies. This potentially makes cookies a better choice for something like showing a popup once a day.</ul>
+                <ul>If a browser supports the Web Storage API, the window object will have a property called localStorage, which is a native object with a number of properties and methods used to store data. </ul>
+                <ul>The information is saved in the form of key-value pairs, and the values can only be strings. There is also a sessionStorage object that works in the same way, although the data is only saved for the current session.</ul>
+                <ul>Here is a basic example of storing information. To save a value locally, use:
+                    <ul class=code>localStorage.setItem('name', 'Walter White');</ul>
+                </ul>
+                <ul>To remove an entry from local storage, use the removeItem method:
+                    <ul class=code>localStorage.removeItem('name');</ul>
+                </ul>
+                <ul>Alternatively, this can be done using the delete operator:
+                    <ul class=code>delete localStorage.name;</ul>
+                </ul>
+                <ul>To completely remove everything stored in local storage, use the clear() method:
+                    <ul class=code>localStorage.clear();</ul>
+                </ul>
+                <ul>The event object sent by the event listener to the callback has a number of properties that provide information about the updated item:
+                    <ul>key tells us the key of the item that changed</ul>
+                    <ul>newValue tells us the new value to which it has been changed</ul>
+                    <ul>oldValue tells us the previous value before it was changed</ul>
+                    <ul>storageArea tells us if it is stored in local or session storage.</ul>
+                </ul>
+            </ul>
+        </li>
+        <li>Geolocation
+            <ul>Geolocation API is used to obtain the geographical position of the device.</ul>
+            <ul>it can be used to find the user’s exact location, then link to nearby places or measure the speed at which the user is moving. </ul>
+            <ul>If geolocation is available, it will be a property of the navigator object that we met in Chapter 9.</ul>
+            <ul>The position object has several other properties that can be used to find out information about the location and movement of the device:
+                <ul>position.speed property returns the ground speed of the device in meters per second.</ul>
+                <ul>position.altitude property returns an estimate of the device’s altitude in meters above the WGS84 ellipsoid, which is a standard measurement for the center of the Earth.</ul>
+                <ul>position.heading property returns the direction the device is moving in. This is measured as a bearing in degrees, clockwise from North.</ul>
+                <ul>position.timestamp property returns the time that the position information was recorded.</ul>
+            </ul>
+            
+        </li>
+        <li>A Factorizing Example
+            <ul><a href="factorizing/factors.html">Factorizing Example</a></ul>
+        </li>
+        <li>Websockets
+            <ul><a href="websockets/websocket.html">Websockets Example</a></ul>
+        </li>
+        <li>Notifications
+            <ul>Notification API allows you to show messages using the system's notifications. This is usually a popup in the corner of the screen, but it changes depending on the operating system</ul>
+            <ul>An advantage of using the system notification is that they will still be displayed even if the web page that calls them isn't the current tab.</ul>
+            <ul>you need to get permission granted by the user. This can be achieved using the requestPermission() method of a Notification global object. </ul>
+        </li>
+        <li>Multimedia
+            <ul>HTML5 introduced the <span class=code>< audio ></span> and <span class=code>< video ></span> tags used to insert audio and video clips into a web page.</ul>
+            <ul>Audio and video elements have a number of properties and methods to control the playback of the clip.
+                <ul class=code>video.play();</ul>
+                <ul class=code>video.pause();</ul>
+                <ul class=code>video.volume = 0.9;</ul>
+                <ul class=code>video.muted = true;</ul>
+                <ul class=code>video.currentTime += 10; // jumps forward 10 seconds</ul>
+                <ul class=code>video.playbackRate = 8; // fast-forward at 8 times as fast</ul>
+                <ul class=code>video.loop = true;</ul>
+                <ul class=code>video.duration;<br> &nbsp;<< 52.209</ul>
+                <ul class=code></ul>
+            </ul>
+            <ul>Audio and video clips also have a number of events that will fire when they occur, including:
+                <ul>The play event, which fires when the clip starts and when it resumes after a pause.</ul>
+                <ul>The pause event, which fires when the clip is paused.</ul>
+                <ul>The volumechange event, which fires when the volume is changed.</ul>
+                <ul>The loadedmetadata event, which we saw in the note above, and which fires when all the video's metadata has loaded.</ul>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Other APIs</h3>
+    <ul>
+        <li>The list of APIs is constantly growing, and includes APIs for accessing a device’s camera, uploading files, accessing the battery status, handling push notifications, building drag-and-drop functionality, creating 3D effects with WebGL, and many more!</li>
+    </ul>
+
+    <h3>Drawing with Canvas</h3>
+    <ul>
+        <li>canvas element was introduced to allow graphics to be drawn onto a web page in real time using JavaScript</li>
+        <li>To add a canvas element to a page, the <span class=code>< canvas ></span> tag is used specifying a height and width. Anything placed inside the tag will only display if the canvas element is unsupported:
+            <ul><a href="canvas/canvas.html">Canvas Examples</a></ul>
+        </li>
+    </ul>
+
+    <h3>Shims and Polyfills</h3>
+    <ul>
+        <li>you can’t always guarantee that users will have the most up-to-date browser. This is where a shim or a polyfill comes in handy.</li>
+        <li>These are libraries of code that allow you to use the APIs as usual. They then fill in the necessary code that's not provided natively by the user’s browser.</li>
+        <li>terms shim and polyfill are often used interchangeably.
+            <ul>main difference between them is that a shim is a piece of code that adds some missing functionality to a browser, although the implementation method may differ slightly from the standard API</ul>
+            <ul>polyfill is a shim that achieves the same functionality, while also using the API commands that would be used if the feature was supported natively.</ul>
+        </li>
+    </ul>
+
+    <h3>Chapter Summary</h3>
+    <ul>
+        <li>HTML5.1 is the latest incarnation of the Hypertext Markup Language. It covers a variety of technologies, including several APIs that are accessible using JavaScript.</li>
+        <li>data- attributes help to embed custom data into a web page that can then be used to enhance the user experience with JavaScript.</li>
+        <li>The Web Storage API allows key-value pairs to be stored on the user’s device in a similar way to cookies, but without the same storage restrictions.</li>
+        <li>The Geolocation API allows you to access the geographic coordinates of the user’s device, as long as the user gives permission.</li>
+        <li>The Web Worker API can be used to perform computationally intensive tasks in the background, which helps to avoid websites becoming unresponsive.</li>
+        <li>Websockets are a new protocol for communicating over the internet, and allow real-time, two-way communication.</li>
+        <li>The Notification API allows you to display notifications on the user's system.</li>
+        <li>The < audio > and < video > elements can be employed to embed audio tracks and video clips in a web page. They also have a Media API that can help control the playback using JavaScript.</li>
+        <li>The canvas element can be used to dynamically draw geometric shapes, text, and images on a web page in real-time using JavaScript.</li>
+        <li>A shim or polyfill is a piece of code that adds support of missing features to older browsers.</li>
+    </ul>
+    <hr>
+    <a href="../../index.html">Home</a>
+</body>
+</html>

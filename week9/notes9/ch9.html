@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9</title>
+    <link rel="stylesheet" href="../../week1/style1.css" />
+</head>
+<body style="text-align: left;">
+    <h1>The Window Object</h1>
+    <p>Every JavaScript environment has a global object. Any variables that are created 
+        in the global scope are actually properties of this object, and any functions 
+        are methods of it. In a browser environment the global object is the window object, 
+        which represents the browser window that contains a web page.</p>
+
+    <h3>The Browser Object Model</h3>
+    <ul>
+        <li>BOM for short</li>
+        <li>a collection of properties and methods that contain information about the browser and computer screen</li>
+        <li>Remember that JavaScript can be run in different environments. The BOM only makes 
+            sense in a browser environment. This means that other environments (such as Node.js) 
+            probably won’t have a <span class=code>window</span> object, although they will still 
+            have a global object; for example, Node.js has an object called <span class=code>global</span>.</li>
+        <li>If you don’t know the name of the global object, you can also refer to it using the 
+            keyword this in the global scope. The following code provides a quick way of assigning
+            the variable global to the global object: </li>
+        <li><span class=code>//from within the global scope<br>&emsp;&nbsp;const global = this;</span></li> 
+        <li>Going Global
+            <ul>Global variables are actual properties of a global object. </ul>
+            <ul>you should refer to global variables without using the window object; 
+                it’s less typing and your code will be more portable between environments.</ul>
+            <ul>exception is if you need to check whether a global variable has been defined.</ul>
+            <ul style="color: yellow"></ul>
+        </li>
+        <li>Dialogs
+            <ul><span  class=code>window.alert('Hello');</span>
+                <ul>pause the execution of the program and display a message in a dialog box.</ul>
+            </ul>
+            <ul><span  class=code>window.confirm('Do you wish to continue?');</span>
+                <ul>stop the execution of the program and display a confirmation dialog that shows 
+                    the message provided as an argument, and giving the options of OK or Cancel</ul>
+            </ul>
+            <ul><span  class=code>window.prompt('Please enter your name:');</span>
+                <ul>stop the execution of the program. It displays a dialog that shows a message 
+                    provided as an argument, as well as an input field that allows the user to enter text.</ul>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Browser Information</h3>
+    <p>The window object has a number of properties and methods that provide information about the user’s browser</p>
+    <ul>Which Browser?
+        <li>window object has a navigator property that returns a reference to the Navigator object.</li>
+        <li>userAgent property will return information about the browser and operating system being used</li>
+        <li><span class=code>window.navigator.userAgent</span></li>
+        <li><span style="color:red;">Don’t rely on this information though</span> it can be modified by a user 
+            to masquerade as a different browser.</li>
+    </ul>
+    <ul>Location, Location, Location
+        <li>window.location property is an object that contains information about the URL of the current page.</li>
+        <li><span  class=code>window.location.href </span>
+            <ul>returns the full URL as a string</ul>
+        </li>
+        <li><span  class=code>window.location.href = 'https://www.sitepoint.com/javascript/'</span>
+            <ul>This property (as well as most of the others in this section) is a read/write property, 
+                which means it can also be changed by assignment.</ul>
+        </li>
+        <li><span  class=code>window.location.protocol</span>
+            <ul>returns a string describing the protocol used (such as http, https, pop2, ftp etc.).</ul>
+            <ul style="color: yellow">Note that there is a colon (:) at the end</ul>
+        </li>
+        <li><span  class=code>window.location.host</span>
+            <ul>returns a string describing the domain of the current URL and the port number 
+                (this is often omitted if the default port 80 is used)</ul>
+        </li>
+        <li><span  class=code>window.location.hostname</span>
+            <ul>returns a string describing the domain of the current URL</ul>
+        </li>
+        <li><span  class=code>window.location.port</span>
+            <ul>returns a string describing the port number, although it will return 
+                an empty string if the port is not explicitly stated in the URL</ul>
+        </li> <!--    -->
+        <li><span  class=code>window.location.pathname</span>
+            <ul>returns a string of the path that follows the domain</ul>
+        </li>
+        <li><span  class=code>window.location.search</span>
+            <ul>returns a string that starts with a “?” followed by the query string 
+                parameters. It returns an empty string if there are no query string parameters.</ul>
+        </li>
+        <li><span  class=code>window.location.hash</span>
+            <ul>returns a string that starts with a “#” followed by the fragment identifier. 
+                It returns an empty string if there is no fragment identifier</ul>
+        </li>
+        <li><span  class=code>window.location.origin</span>
+            <ul>returns a string that shows the protocol and domain where the current page 
+                originated from. This property is read-only, so cannot be changed</ul>
+        </li>
+        <li>The window.location object also has the following methods:
+            <ul>The reload() method can be used to force a reload of the current page. If it’s 
+                given a parameter of true, it will force the browser to reload the page from the server, 
+                instead of using a cached page.</ul>
+            <ul>The assign() method can be used to load another resource from a URL provided as a parameter, for example:</ul>
+            <ul>The replace() method is almost the same as the assign() method, except the current page will 
+                not be stored in the session history, so the user will be unable to navigate back to it using the back button.</ul>
+            <ul>The toString() method returns a string containing the whole URL:</ul>
+        </li>
+    </ul>
+
+    <h3>The Browser History</h3>
+    <ul>
+        <li>The window.history property can be used to access information about any previously visited pages 
+            in the current browser session</li>
+        <li>The window.history.length property shows how many pages have been visited before arriving at the current page.</li>
+        <li>The window.history.go() method can be used to go to a specific page, where 0 is the current page</li>
+        <li>There are also the window.history.forward() and window.history.back() methods that can be used to navigate 
+            forwards and backwards by one page respectively, just like using the browser’s forward and back buttons.</li>
+    </ul>
+    
+
+    <h3>Controlling Windows</h3>
+    <ul>
+        <li>A new window can be opened using the <span class=code>window.open()</span> method.</li>
+        <li>The <span class=code>close()</span> method can be used to close a window, assuming you have a reference to it</li>
+        <li>possible to move a window using the <span class=code>window.moveTo()</span> method. 
+            This takes two parameters that are the X and Y coordinates of the screen that the window is to be moved to:
+            <ul class=code>window.moveTo(0,0); // will move the window to the top-left corner of the screen</ul>
+        </li>
+        <li>resize a window using the <span class=code>window.resizeTo()</span> method. 
+            This takes two parameters that specify the width and height of the resized window’s dimensions:
+        <ul class=code>window.resizeTo(600,400);</ul></li>
+    </ul>
+
+    <h3>Screen Information</h3>
+    <ul>
+        <li><span class=code>window.screen</span> object contains information about the screen the browser is displayed on. 
+            You can find out the height and width of the screen in pixels using the height and width properties respectively:
+        <ul class=code>window.screen.height<br>&nbsp;<< 1024<br> window.screen.width<br>&nbsp;<< 1280 </ul></li>
+        <li>The availHeight and availWidth can be used to find the height and width of the screen, 
+            excluding any operating system menus</li>
+        <li>colorDepth property can be used to find the color bit depth of the user’s monitor, 
+            although there are few use cases for doing this other than collecting user statistics</li>
+    </ul>
+
+    <h3>The Document Object</h3>
+    <p>Each window object contains a document object. This object has properties and methods that 
+        deal with the page that has been loaded into the window. </p>
+    <ul><span class=code>document.write()</span>
+        <li>write() method simply writes a string of text to the page. If a page has already loaded, 
+            it will completely replace the current document:
+        <ul class=code>document.write('Hello, world!);</ul>
+        <ul>document.write() method can also be used within a document inside <"script"> tags to inject a string into the markup.</ul>
+    </ul>
+    <ul>Cookies 
+        <li>small files that are saved locally on a user’s computer. </li>
+        <li>a browser does not remember anything from one request to another. So every time a user visits a page, 
+            nothing about any previous visits is remembered. </li>
+        <li>Cookies can be used to sidestep this problem by storing information that can then be retrieved between requests.</li>
+        <li>Cookies are also limited to storing up to 4KB of data, although 20 cookies are allowed per domain, 
+            which can add up to quite a lot of data.</li>
+        <li>Cookies can be used for personalizing a user’s browsing experience, 
+            storing user preferences, keeping track of user choices (such as a shopping cart), 
+            authentication and tracking users. </li>
+        <li>Creating Cookies
+            <ul>To create a cookie, you assign it to JavaScript’s “cookie jar”, using the document.cookie property, like so:
+                <li class=code>document.cookie = 'name=Superman';<br> &nbsp;<< "name=Superman"</li>
+            </ul>
+        </li>
+        <li>Changing Cookie Values:
+            <ul>A cookie’s value can be changed by reassigning it to document.cookie using the same name but a different value. </ul>
+        </li>
+        <li>Reading Cookies
+            <ul>To see the current contents of the cookie jar, simply enter document.cookie</ul>
+            <ul>use the split method to break the string into an array containing each name/value pair, 
+                then use a for of loop to iterate through the array</ul>
+        </li>
+        <li>Cookie Expiry Dates
+            <ul>Cookies are session cookies by default. This means they are deleted once a browser 
+                session is finished (when the user closes the browser tab or window). </ul>
+            <ul>Cookies can be made persistent ― that is, lasting beyond the browser session ― by adding 
+                "; expires=date" to the end of the cookie when it’s set, where date is a date value in the 
+                UTC String format Day, DD-Mon-YYYY HH:MM:SS GMT.</ul>
+            <ul>alternative is to set the max-age value</ul>
+        </li>
+        <li>The Path and Domain of Cookies
+            <ul>cookies can only be read by pages inside the same directory and domain as the file was set. </ul>
+            <ul>This is for security reasons so that access to the cookie is limited.</ul>
+        </li>
+        <li>Deleting Cookies
+            <ul>To remove a cookie, you need to set it to expire at a time in the past:
+                <ul class=code>document.cookie = 'name=Batman; expires=Thu, 01 Jan 1970 00:00:01 GMT';</ul>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Timing Functions</h3>
+    <ul><span class=code>setTimeout()</span>
+        <li> accepts a callback to a function as its first parameter and a number of milliseconds as its second parameter.</li>
+    </ul>
+
+    <h3>setInterval()</h3>
+    <ul><span class=code>setInterval()</span>
+        <li>works in a similar way to window.setTimeout(), except that it will repeatedly invoke the callback 
+            function after every given number of milliseconds.</li>
+    </ul>
+
+    <h3>Animation</h3>
+    <ul>
+        <li><span class=code>setTimeout()</span> and <span class=code>setInterval()</span> methods can be used to 
+            animate elements on a web page.</li>
+        <li><a href="animation/index.html">Animation Example</a></li>
+        <li>requestAnimationFrame()</li>
+    </ul>
+
+    <h3>Chapter Summary</h3>
+    <ul>
+        <li>The window object is the global object in a browser.</li>
+        <li>Global variables are actually properties of the window object in a browser environment.</li>
+        <li>alert, confirm(), and prompt() are all methods of the window object, and open dialogs that 
+            halt the execution of the program.</li>
+        <li>The window.navigator object gives information about the user’s browser and operating system, 
+            although it can be unreliable.</li>
+        <li>The window.location object provides information about the URL of the current page.</li>
+        <li>The window.history object keeps information about the pages that have been visited in the session.</li>
+        <li>You can open, close, resize, and move windows (although, this doesn’t mean you should!).</li>
+        <li>The window.screen object provides information about the user’s screen.</li>
+        <li>document.write() is an archaic method of writing text to the document and should be avoided.</li>
+        <li>Cookies can be used to store small pieces of information between requests using the document.cookie property.</li>
+        <li>The window.setTimeout() method can be used to invoke a function after a set amount of time. It can be 
+            canceled using the clearTimeout() method.</li>
+        <li>The window.setInterval() method can be used to repeatedly invoke a function. It can be stopped using the 
+            clearInterval() method.</li>
+        <li>The window.requestAnimationFrame() method can be used to produce smooth and optimized animation by 
+            utilizing the browser's built-in graphics capabilities. It can be canceled using the cancelAnimationFrame() method.</li>
+        
+    </ul>
+
+
+    <hr>
+    <a href="../../index.html">Home</a>
+</body>
+</html>
