@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10</title>
+    <link rel="stylesheet" href="../../../week1/style1.css" />
+</head>
+<body style="text-align: left;">
+    <h1>Using Fetch</h1>
+    <h3></h3>
+    <ul>
+        <li>The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses.</li>
+        <li>Fetch provides a better alternative that can be easily used by other technologies such as Service Workers.</li>
+        <li>Fetch also provides a single logical place to define other HTTP-related concepts such as CORS and extensions to HTTP.</li>
+        <li>The fetch specification differs from jQuery.ajax() in the following significant ways:
+            <ul>The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, as soon as the server responds with headers, the Promise will resolve normally (with the ok property of the response set to false if the response isn’t in the range 200–299), and it will only reject on network failure or if anything prevented the request from completing.</ul>
+            <ul>fetch() won’t send cross-origin cookies unless you set the credentials init option. (Since April 2018. The spec changed the default credentials policy to same-origin. Firefox changed since 61.0b13.)</ul>
+        </li>
+    </ul>
+
+    <h3>Sending a request with credentials included</h3>
+    <ul>
+        <li>To cause browsers to send a request with credentials included on both same-origin and cross-origin calls, add <span class=code>credentials: 'include'</span> to the <span class=code>init</span> object you pass to the <span class=code>fetch()</span> method.</li>
+        <li>If you only want to send credentials if the request URL is on the same origin as the calling script, add <span class=code>credentials: 'same-origin'</span>.</li>
+    </ul>
+
+    <h3>Uploading JSON data</h3>
+    <ul>
+        <li>Use <span class=code>fetch()</span> to POST JSON-encoded data.</li>
+        <li>Files can be uploaded using an HTML <span class=code>< input type="file" /></span> input element, <span class=code>FormData()</span> and <span class=code>fetch()</span>.</li>
+    </ul>
+
+    <h3>Uploading multiple files</h3>
+    <ul>
+        <li>Files can be uploaded using an HTML <span class=code>< input type="file" multiple /></span> input element, <span class=code>FormData()</span> and <span class=code>fetch().</span></li>
+    </ul>
+
+    <h3>Processing a text file line by line</h3>
+    <ul>
+        <li>If you want to fetch a text file and process it line by line, it is up to you to handle these complications.</li>
+    </ul>
+    
+    <h3>Checking that the fetch was successful</h3>
+    <ul>
+        <li>A fetch() promise will reject with a TypeError when a network error is encountered or CORS is misconfigured on the server-side, although this usually means permission issues or similar — a 404 does not constitute a network error, for example. </li>
+        <li>An accurate check for a successful fetch() would include checking that the promise resolved, then checking that the Response.ok property has a value of true.</li>
+    </ul>
+
+    <h3>Supplying your own request object</h3>
+    <ul>
+        <li>Instead of passing a path to the resource you want to request into the <span class=code>fetch()</span> call, you can create a request object using the <span class=cdoe>Request()</span> constructor, and pass that in as a <span class=code>fetch()</span> method argument</li>
+        <li>An accurate check for a successful fetch() would include checking that the promise resolved, then checking that the Response.ok property has a value of true.</li>
+    </ul>
+
+    <h2>Headers</h2>
+    <ul>
+        <li>The Headers interface allows you to create your own headers object via the Headers() constructor. A headers object is a simple multi-map of names to values</li>
+        <li>The same can be achieved by passing an array of arrays or an object literal to the constructor</li>
+        <li>All of the Headers methods throw a TypeError if a header name is used that is not a valid HTTP Header name. The mutation operations will throw a TypeError if there is an immutable guard (see below). Otherwise, they fail silently.</li>
+    </ul>
+
+    <h3>Guard</h3>
+    <ul>
+        <li>Since headers can be sent in requests and received in responses, and have various limitations about what information can and should be mutable, headers' objects have a guard property.</li>
+        <li>This is not exposed to the Web, but it affects which mutation operations are allowed on the headers object.</li>
+        <li>Possible guard values are:
+            <ul><span class=code>none</span>: default.</ul>
+            <ul><span class=code>request</span>: guard for a headers object obtained from a request (<span class=code>Request.headers</span>).</ul>
+            <ul><span class=code>request-no-cors</span>: guard for a headers object obtained from a request created with <span class=code>Request.mode no-cors</span>.</ul>
+            <ul><span class=code>response</span>: guard for a headers object obtained from a response (<span class=code>Response.headers</span>).</ul>
+            <ul><span class=code>immutable</span>: guard that renders a headers object read-only; mostly used for ServiceWorkers.</ul>
+        </li>
+    </ul>
+
+    <h2>Response Objects</h2>
+    <ul>
+        <li><span class=code>Response</span> instances are returned when <span class=code>fetch()</span> promises are resolved.</li>
+        <li>The most common response properties you'll use are:
+            <ul><span class=code>Response.status</span> — An integer (default value 200) containing the response status code.</ul>
+            <ul><span class=code>Response.statusText</span> — A string (default value ""), which corresponds to the HTTP status code message. Note that HTTP/2 does not support status messages.</ul>
+            <ul><span class=code>Response.ok</span>  — seen in use above, this is a shorthand for checking that status is in the range 200-299 inclusive. This returns a boolean value.</ul>
+        </li>
+    </ul>
+
+    <h2>Body</h2>
+    <ul>
+        <li>Both requests and responses may contain body data. A body is an instance of any of the following types:
+            <ul>ArrayBuffer</ul>
+            <ul>ArrayBufferView (Uint8Array and friends)</ul>
+            <ul>Blob/File</ul>
+            <ul>string</ul>
+            <ul>URLSearchParams</ul>
+            <ul>FormData</ul>
+        </li>
+        <li>The Request and Response interfaces share the following methods to extract a body. These all return a promise that is eventually resolved with the actual content.
+            <ul><span class=code>Request.arrayBuffer()</span> / <span class=code>Response.arrayBuffer()</span></ul>
+            <ul><span class=code>Request.blob() </span> / <span class=code>Response.blob()</span></ul>
+            <ul><span class=code>Request.formData()</span> / <span class=code>Response.formData()</span></ul>
+            <ul><span class=code>Request.json()</span> / <span class=code>Response.json()</span></ul>
+            <ul><span class=code>Request.text()</span> / <span class=code>Response.text()</span></ul>
+        </li>
+        <li>Request bodies can be set by passing body parameters</li>
+    </ul>
+
+    <h3>Feature detection</h3>
+    <ul>
+        <li>Fetch API support can be detected by checking for the existence of Headers, Request, Response or fetch() on the Window or Worker scope.</li>
+    </ul>
+
+    <h3>Polyfill</h3>
+    <ul>
+        <li>To use Fetch in unsupported browsers, there is a Fetch Polyfill available that recreates the functionality for non-supporting browsers.</li>
+    </ul>
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">More Info</a>
+    <a href="../../index10.html">Week 10</a>
+    <a href="../../../index.html">Home</a>
+
+</body>
+</html>

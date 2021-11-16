@@ -1,16 +1,24 @@
 body {
     font-size: 15px;
-    font-family: Tahoma, sans-serif;
+    /* font-family: Tahoma, sans-serif; */
+    font-family: Comic Sans MS;
     text-align: center;
     background-color: rgb(53, 54, 54);
     color: rgb(204, 198, 204);
   }
 
-h1, h2{
-  font-family: fantasy;
+h1{
+  font-family: Comic Sans MS;
+  /* font-family: fantasy; */
+}
+
+h2{
+  font-family: Comic Sans MS;
+  color:rgb(255, 152, 255);
 }
 
 h3{
+  font-family: Comic Sans MS;
   color:rgb(255, 152, 255);
 }
 

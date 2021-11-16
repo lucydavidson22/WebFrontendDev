@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10</title>
+    <link rel="stylesheet" href="../../../week1/style1.css" />
+</head>
+<body style="text-align: left;">
+    <h1>Validating Forms</h1>
+    <h3>Client-side Form Validation</h3>
+    <ul>
+        <li>Client-side validation is an initial check and an important feature of good user experience; by catching invalid data on the client-side, the user can fix it straight away</li>
+        <li>apps should always perform security checks on any form-submitted data on the server-side as well as the client-side, because client-side validation is too easy to bypass, so malicious users can still easily send bad data through to your server.</li>
+    </ul>
+
+    <h3>What is Form Validation</h3>
+    <ul>
+        <li>When you enter data, the browser and/or the web server will check to see that the data is in the correct format and within the constraints set by the application.</li>
+        <li> Validation done in the browser is called <span style=color:yellow>client-side validation</span>, while validation done on the server is called <span style=color:yellow>server-side</span> validation.</li>
+        <li>Why validate?
+            <ul><span style=color:yellow>We want to get the right data, in the right format.</span> Our applications won't work properly if our users' data is stored in the wrong format, is incorrect, or is omitted altogether.</ul>
+            <ul><span style=color:yellow>We want to protect our users' data.</span> Forcing our users to enter secure passwords makes it easier to protect their account information.</ul>
+            <ul><span style=color:yellow>We want to protect ourselves.</span> There are many ways that malicious users can misuse unprotected forms to damage the application</ul>
+        </li>
+    </ul>
+
+    <h3>Different types of client-side validation</h3>
+    <ul>
+        <li>Built-in form validation
+            <ul>uses HTML5 form validation features, which we've discussed in many places throughout this module.</ul>
+            <ul>This validation generally doesn't require much JavaScript</ul>
+            <ul> has better performance than JavaScript, but it is not as customizable as JavaScript validation.</ul>
+        </li>
+        <li>JavaScript Validation
+            <ul>coded using JavaScript</ul>
+            <ul>completely customizable, but you need to create it all (or use a library).</ul>
+        </li>
+    </ul>
+
+    <h3>Using built-in form validation</h3>
+    <ul>
+        <li>HTML5 form controls has the ability to validate most user data without relying on JavaScript.</li>
+        <li>Using validation attributes on form elements:
+            <ul><span class=code>required</span>: Specifies whether a form field needs to be filled in before the form can be submitted.</ul>
+            <ul><span class=code>minlength</span> and <span class=code>maxlength</span>: Specifies the minimum and maximum length of textual data (strings)</ul>
+            <ul><span class=code>min</span> and <span class=code>max</span>: Specifies the minimum and maximum values of numerical input types</ul>
+            <ul><span class=code>type</span>: Specifies whether the data needs to be a number, an email address, or some other specific preset type.</ul>
+            <ul><span class=code>pattern</span>: Specifies a regular expression that defines a pattern the entered data needs to follow.</ul>
+        </li>
+        <li>When an element is valid, the following things are true:
+            <ul>The element matches the <span class=code>:valid</span> CSS pseudo-class, which lets you apply a specific style to valid elements.</ul>
+            <ul>If the user tries to send the data, the browser will submit the form, provided there is nothing else stopping it from doing so (e.g., JavaScript).</ul>
+        </li>
+        <li>When an element is invalid, the following things are true:
+            <ul>The element matches the <span class=code>:invalid</span> CSS pseudo-class, and sometimes other UI pseudo-classes (e.g., <span class=code>:out-of-range</span>) depending on the error, which lets you apply a specific style to invalid elements.</ul>
+            <ul>If the user tries to send the data, the browser will block the form and display an error message.</ul>
+        </li>
+    </ul>
+
+    <h3>Built-in form validation examples</h3>
+    <ul>
+        <li><a href="fruit-start.html">Fruit Validation</a></li>
+        <li>Validating against a regular expression
+            <ul>Another useful validation feature is the pattern attribute, which expects a Regular Expression as its value.</ul>
+            <ul>A regular expression (regex) is a pattern that can be used to match character combinations in text strings, so regexps are ideal for form validation and serve a variety of other uses in JavaScript</ul>
+        </li>
+        <li>Constraining the length of your entries
+            <ul>You can constrain the character length of all text fields created by <span class=code>< input ></span> or <span class=code>< textarea ></span> by using the minlength and maxlength attributes</ul>
+            <ul>field is invalid if it has a value and that value has fewer characters than the minlength value or more than the maxlength value.</ul>
+        </li>
+        <li>Constraining the values of your entries
+            <ul>For number fields (i.e. <span class=code>< input type="number"></span>), the min and max attributes can be used to provide a range of valid values. If the field contains a value outside this range, it will be invalid.</ul>
+            <ul><a href="validationExample.html">Full Validation Example</a></ul>
+        </li>
+    </ul>
+
+    <h3>Validating forms using JavaScript</h3>
+    <ul>
+        <li>You must use JavaScript if you want to take control over the look and feel of native error messages or to deal with legacy browsers that do not support HTML's built-in form validation. </li>
+        <li>The Constraint  Validation API<br>
+            <img style="height: 700px; width: 500px;" src="../../../images/ConstraintValidAPI.png">
+        </li>
+        <li>Implementing a customized error message
+            <ul><a href="fruit-email.html">Validating emails</a></ul>
+        </li>
+        <li>Validating forms without a built-in API
+            <ul>What kind of validation should I perform?
+                <ul>You need to determine how to validate your data: string operations, type conversion, regular expressions, and so on. It's up to you.</ul>
+            </ul>
+            <ul>What should I do if the form doesn't validate?
+                <ul>This is clearly a UI matter. You have to decide how the form will behave. Does the form send the data anyway? Should you highlight the fields that are in error? Should you display error messages?</ul>
+            </ul>
+            <ul>How can I help the user to correct invalid data?
+                <ul>In order to reduce the user's frustration, it's very important to provide as much helpful information as possible in order to guide them in correcting their inputs. You should offer up-front suggestions so they know what's expected, as well as clear error messages.</ul>
+            </ul>
+        </li>
+        <li>An example that doesn't use the constraint validation API
+            <ul><a href="noCVAPI.html">Lack of Constraint Validation Api</a></ul>
+        </li>
+    </ul>
+
+    <h3>Summary</h3>
+    <ul>Client-side form validation sometimes requires JavaScript if you want to customize styling and error messages, but it always requires you to think carefully about the user. Always remember to help your users correct the data they provide. To that end, be sure to:
+        <li>Display explicit error messages.</li>
+        <li>Be permissive about the input format.</li>
+        <li>Point out exactly where the error occurs, especially on large forms.</li>
+    </ul>
+    <a href="../../index10.html">Week 10</a>
+    <a href="../../../index.html">Home</a>
+</body>
+</html>
