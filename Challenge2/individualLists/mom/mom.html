@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../christmas.css">
+<link rel="stylesheet" href="mom.css">
+<link href='https://fonts.googleapis.com/css?family=Mountains of Christmas' rel='stylesheet'>
+<title>To Do List</title>
+</head>
+<body>
+  <section class="header"></section>
+  <div class="container">
+  
+    <div class="title-theme">
+      <h1>Mom Gift Ideas</h1>
+    </div>
+
+    <!-- Mark up for the add gift form -->
+    <div class="giftsInput">
+      <form class="form" action="" newGiftForm>
+        <input id="gifts" giftsElements type="text" placeholder=" Add a Gift Idea" >
+      </form>
+    </div>
+    <!-- Gift List Display-->
+    <div class="giftsList">
+      <ul id="gifts-list">
+      </ul>
+    </div> <br>
+    <!-- Gift List Footer -->
+    <div class="gift-list-footer">
+      <p id="giftsLeft">items left</p>
+      <!-- Gift List Filter Buttons-->
+        <!-- <div class="gift-list-footer-list-div"> -->
+            <button class="btn" id="All">All</button>
+            <button class="btn" id="Active">Active</button>
+            <button class="btn" id="Completed">Completed</button>
+        <!-- </div> -->
+    </div> 
+  </div>
+  
+  <a href="../../christmas.html">Christmas Lists</a>
+  <!-- <a href="../../index.html">Home</a> -->
+    <script src="mom-gifts.js"></script>
+  </body>
+</html>
