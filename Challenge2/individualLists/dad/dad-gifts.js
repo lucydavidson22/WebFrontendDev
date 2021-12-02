@@ -165,5 +165,5 @@ const counter = () => {
   const count = document.getElementById('giftsLeft');
   // has to check if there is more than one item in order to display plural items or not
   const counterString = itemsCounter.length === 1 ? 'gift' : 'gifts';
-  count.innerText = `${itemsCounter.length} ${counterString} left to do`
+  count.innerText = `${itemsCounter.length} ${counterString} left to get`
 }
