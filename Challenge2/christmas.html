@@ -9,97 +9,40 @@
     <link href='https://fonts.googleapis.com/css?family=Mountains of Christmas' rel='stylesheet'>
 </head>
 <body>
-
-    <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-      </div>
-
-    <h1>🎄Christmas Gift Ideas!🎄</h1>
-    <!-- <div class="flex-container"> -->
-        <div>
-            <a href="individualLists/mom/mom.html">Mom</a>
-            <a href="individualLists/dad/dad.html">Dad</a>
-            <a href="individualLists/siblings/siblings.html">Siblings</a><br>
-            <a href="individualLists/pets/pets.html">Pets</a>
-            <a href="individualLists/friends/friends.html">Friends</a>
-            <a href="individualLists/others/others.html">Others</a>
-        </div>
-        
-    <!-- </div> -->
-
-    <!-- <div class="flex-container">
-
-        <div class="flex-child">
-          <h1>Mom Gift Ideas</h1>
-            <input type="text" id="mom-candidate" placeholder="Mom's List"/><br>
-            <button onclick="addMomItem()">add item</button>
-            <button onclick="removeMomItem()">remove item</button>
-            <ul id="mom-list"></ul>
-        </div>
-        
-        <div class="flex-child">
-          <h1>Dad Gift Ideas</h1>
-            <input type="text" id="dad-candidate" placeholder="Dad's List"/><br>
-            <button onclick="addDadItem()">add item</button>
-            <button onclick="removeDadItem()">remove item</button>
-            <ul id="dad-list"></ul>
-        </div>
-
-        <div class="flex-child">
-            <h1>Siblings Gift Ideas</h1>
-              <input type="text" id="siblings-candidate" placeholder="Sibling's List"/><br>
-              <button onclick="addSiblingsItem()">add item</button>
-              <button onclick="removeSiblingsItem()">remove item</button>
-              <ul id="siblings-list"></ul>
-          </div>
-
-          <div class="flex-child">
-            <h1>Friends Gift Ideas</h1>
-              <input type="text" id="friends-candidate" placeholder="Friend's List"/><br>
-              <button onclick="addFriendsItem()">add item</button>
-              <button onclick="removeFriendsItem()">remove item</button>
-              <ul id="friends-list"></ul>
-          </div>
-
-          <div class="flex-child">
-            <h1>Pets Gift Ideas</h1>
-              <input type="text" id="pets-candidate" placeholder="Pet's List"/><br>
-              <button onclick="addPetsItem()">add item</button>
-              <button onclick="removePetsItem()">remove item</button>
-              <ul id="pets-list"></ul>
-          </div>
-
-          <div class="flex-child">
-            <h1>Others Gift Ideas</h1>
-              <input type="text" id="others-candidate" placeholder="Other's List"/><br>
-              <button onclick="addOthersItem()">add item</button>
-              <button onclick="removeOthersItem()">remove item</button>
-              <ul id="others-list" draggable="true"></ul>
-          </div>
-        
-      </div> -->
-
-      <div class="time-content"><h2>Christmas Countdown</h2>
-        <h3>Choose date from Calendar or Enter date like this: 12/24/2021</h3>
-        <input type="date" id="dateEnd" value="2021-12-24"><br>
-        <button id="action" onclick="showCountdown()">Show Countdown</button>
-        </div>
-        <p id="demo"></p>
-        <div class="time-content">
-            <p id="Days"></p>
-            <p id="Hours"></p>
-            <p id="Minutes"></p>
-            <p id="Seconds"></p>
-    </div>
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
+  </div>
+  
+  <h1>🎄Christmas Gift Ideas!🎄</h1>
+  <div>
+    <a href="individualLists/mom/mom.html">Mom</a>
+    <a href="individualLists/dad/dad.html">Dad</a>
+    <a href="individualLists/siblings/siblings.html">Siblings</a><br>
+    <a href="individualLists/pets/pets.html">Pets</a>
+    <a href="individualLists/friends/friends.html">Friends</a>
+    <a href="individualLists/others/others.html">Others</a>
+  </div>
+  <div class="time-content"><h2>Christmas Countdown</h2>
+    <h3>Choose date from Calendar or Enter date like this: 12/24/2021</h3>
+    <input type="date" id="dateEnd" value="2021-12-24"><br>
+    <button id="action" onclick="showCountdown()">Show Countdown</button>
+  </div>
+  <p id="demo"></p>
+  <div class="time-content">
+    <p id="Days"></p>
+    <p id="Hours"></p>
+    <p id="Minutes"></p>
+    <p id="Seconds"></p>
+  </div>
 
 <script src="christmas.js"></script>
 
