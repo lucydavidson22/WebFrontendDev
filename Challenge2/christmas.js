@@ -9,7 +9,7 @@ function createFlake() {
   clone.style.opacity = Math.random() * 1;
   container.append(clone); // adding clone flake to container
 }
-const s = setInterval(createFlake, 50); 
+const s = setInterval(createFlake, 25); //50
 
 setTimeout(() => {
   clearInterval(s);

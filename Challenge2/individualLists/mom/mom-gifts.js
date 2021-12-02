@@ -114,7 +114,7 @@ const showGifts = (giftIdea, preventMutableStorage)=> {
     node.innerHTML = `
     <input class="isChecked" id="${giftIdea.id}" type="checkbox" ${isChecked ? "checked" : ""}/>
     <span>${giftIdea.text}</span>
-    <span class="delete">X</span>`;
+    <span class="delete" style="text-align:right;">X</span>`;
     //adds new items onto the bottom of the list of gifts
     document.getElementById('gifts-list').append(node);
     if (item) {

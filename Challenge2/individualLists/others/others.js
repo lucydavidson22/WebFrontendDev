@@ -1,22 +1,22 @@
 const checkedChecker = document.querySelector('input[Type="checkbox"]');
-const formForTheGifts = document.querySelector(`[newformForTheGifts]`)
-const inputtingGifts = document.querySelector(`[addingGiftsElements]`)
+const othersGiftForm = document.querySelector(`[newOthersGiftForm]`)
+const othersGiftInput = document.querySelector(`[othersGiftElements]`)
 
-let giftings = [];
+let othersGifts = [];
 
-//listens for a submit in the html document for the newformForTheGifts and then takes the value of what was input in the giftElements tag
-formForTheGifts.addEventListener('submit', e => {
+//listens for a submit in the html document for the newGiftForm and then takes the value of what was input in the giftElements tag
+othersGiftForm.addEventListener('submit', e => {
     e.preventDefault()
-    let present = inputtingGifts.value.trim();
-    if(present !== '') {       //checks for input, if the user has actually given something, it can continue and  
-       addGift(present);       //add the presentto the ideas list
-       inputtingGifts.value = '';  //clears the add gift bar and 
-       inputtingGifts.focus();   //refocuses the page on the bar again
+    let othersGift = othersGiftInput.value.trim();
+    if(othersGift !== '') {       //checks for input, if the user has actually given something, it can continue and  
+       addGift(othersGift);       //add the gift to the ideas list
+       othersGiftInput.value = '';  //clears the add gift bar and 
+       othersGiftInput.focus();   //refocuses the page on the bar again
     } 
 })
 
 // delete the item when the user clicks the X, otherwise, the item is struckthrough and marked completed
-document.getElementById('listedGifts').addEventListener('click', e => {   
+document.getElementById('othersListedGifts').addEventListener('click', e => {   
   const itemKey = e.target.parentElement.dataset.key;
   if (e.target.classList.contains('isChecked')) {                       
         doneStaysDone(itemKey);                                         
@@ -29,12 +29,12 @@ document.getElementById('listedGifts').addEventListener('click', e => {
 
 // displays all the gifts on the list, complete or not and retrieves items from the localStorage
 document.getElementById('All').addEventListener('click',  (e) => {
-    document.getElementById('listedGifts').innerHTML = ''
-    const key = localStorage.getItem('presentKey');
+    document.getElementById('othersListedGifts').innerHTML = ''
+    const key = localStorage.getItem('othersGiftKey');
     if (key) {
-      giftings = JSON.parse(key);
-      giftings.forEach(present=> {
-        showGifts(present, true);
+      othersGifts = JSON.parse(key);
+      othersGifts.forEach(othersGift => {
+        showGifts(othersGift, true);
         counter();
       });
     }
@@ -43,12 +43,12 @@ document.getElementById('All').addEventListener('click',  (e) => {
 /*displays only the gifts that have not be completed, so 
   it removes the gifts that have not been checked */
   document.getElementById('Active').addEventListener('click',  (e) => {
-    document.getElementById('listedGifts').innerHTML = ''
-    const key = localStorage.getItem('presentKey');
+    document.getElementById('othersListedGifts').innerHTML = ''
+    const key = localStorage.getItem('othersGiftKey');
     if (key) {
-      giftings = JSON.parse(key);
-      giftings.filter(item => !item.checked).forEach(present => {
-        showGifts(present, true);
+      othersGifts = JSON.parse(key);
+      othersGifts.filter(item => !item.checked).forEach(othersGift => {
+        showGifts(othersGift, true);
         counter();
       });
     }
@@ -56,12 +56,12 @@ document.getElementById('All').addEventListener('click',  (e) => {
 
 // displays only the gifts that have been marked as completed
 document.getElementById('Completed').addEventListener('click',  (e) => {
-    document.getElementById('listedGifts').innerHTML = ''
-    const key = localStorage.getItem('presentKey');
+    document.getElementById('othersListedGifts').innerHTML = ''
+    const key = localStorage.getItem('othersGiftKey');
     if (key) {
-      giftings = JSON.parse(key);
-      giftings.filter(item=>item.checked).forEach(present => {
-        showGifts(present, true);
+      othersGifts = JSON.parse(key);
+      othersGifts.filter(item=>item.checked).forEach(othersGift => {
+        showGifts(othersGift, true);
         counter();
       });
     }
@@ -71,12 +71,12 @@ document.getElementById('Completed').addEventListener('click',  (e) => {
 
 //keeps the gifts loaded so that a page refresh doesn't delete everything that's added
 document.addEventListener('DOMContentLoaded', () => {     //when the content is loaded it pulls the previously existing gifts 
-  const key = localStorage.getItem('presentKey');
+  const key = localStorage.getItem('othersGiftKey');
   if (key) {
     //reads a values in the array from local storage and parses it as a JSON
-    giftings = JSON.parse(key);
-    giftings.forEach(present => {
-      showGifts(present);
+    othersGifts = JSON.parse(key);
+    othersGifts.forEach(othersGift => {
+      showGifts(othersGift);
       counter();
     });
   }
@@ -85,42 +85,42 @@ document.addEventListener('DOMContentLoaded', () => {     //when the content is 
 /****************************************All of the functions*******************************************/
 /* creates a gift object */
 const addGift = (text) => {
-    const presentIdea = {
+    const othersGiftIdea = {
         text,
         checked: false,
         id: Date.now(),
     }
-    giftings.push(presentIdea);
-    showGifts(presentIdea);
+    othersGifts.push(othersGiftIdea);
+    showGifts(othersGiftIdea);
 
 };
 
-const showGifts = (presentIdea, preventMutableStorage)=> {
+const showGifts = (othersGiftIdea, preventMutableStorage)=> {
   //stops data in the localstorage from being changed  
   if (!preventMutableStorage) {
-        localStorage.setItem('presentKey', JSON.stringify(giftings));
+        localStorage.setItem('othersGiftKey', JSON.stringify(othersGifts));
     }
-    const item = document.querySelector(`[data-key='${presentIdea.id}']`);
-    if (presentIdea.deleted) {
+    const item = document.querySelector(`[data-key='${othersGiftIdea.id}']`);
+    if (othersGiftIdea.deleted) {
         item.remove();
         return
       }
-    const isChecked = presentIdea.checked ? 'done': '';
+    const isChecked = othersGiftIdea.checked ? 'done': '';
     const node = document.createElement('li')
     //assigns an added item to the list a class and assigns it to id=gift-item
     node.setAttribute('class', `gifts-item ${isChecked}`);
-    node.setAttribute('data-key', presentIdea.id);
+    node.setAttribute('data-key', othersGiftIdea.id);
     //add the html code for displaying each item with the newly assigned class, type, is, and checked status
     node.innerHTML = `
-    <input class="isChecked" id="${presentIdea.id}" type="checkbox" ${isChecked ? "checked" : ""}/>
-    <span>${presentIdea.text}</span>
+    <input class="isChecked" id="${othersGiftIdea.id}" type="checkbox" ${isChecked ? "checked" : ""}/>
+    <span>${othersGiftIdea.text}</span>
     <span class="delete" style="text-align:right;">X</span>`;
     //adds new items onto the bottom of the list of gifts
-    document.getElementById('listedGifts').append(node);
+    document.getElementById('othersListedGifts').append(node);
     if (item) {
         node.replaceWith(item)
     } else {
-        document.getElementById('listedGifts').append(node);
+        document.getElementById('othersListedGifts').append(node);
     }
     counter();
 
@@ -129,11 +129,11 @@ const showGifts = (presentIdea, preventMutableStorage)=> {
 //displays the completed gifts from the local storage, so past user's that left completed items on the list 
 // don't lose what they have completed
 const showGatheredGifts = () => {
-    const key = localStorage.getItem('presentKey');
+    const key = localStorage.getItem('othersGiftKey');
     if (key) {
-        giftings = JSON.parse(key);
-        giftings.filter(item => item.check).forEach(present=> {
-        showGifts(present, true);
+      othersGifts = JSON.parse(key);
+      othersGifts.filter(item => item.check).forEach(othersGift => {
+        showGifts(othersGift, true);
         counter();
       });
     }
@@ -141,27 +141,27 @@ const showGatheredGifts = () => {
 
 //keeps the checked off items checked when the page changes or a button is clicked
 const doneStaysDone = (key) => {    
-  const index = giftings.findIndex(present=> present.id === Number(key));
-  giftings[index].checked = !giftings[index].checked;
-  showGifts(giftings[index]);
+  const index = othersGifts.findIndex(othersGift=> othersGift.id === Number(key));
+  othersGifts[index].checked = !othersGifts[index].checked;
+  showGifts(othersGifts[index]);
   showGatheredGifts()
 }
 
 //function to delete a gift from the list whne the X is selected
 const deleteGift = (key) => {
-  const index = giftings.findIndex(item => item.id === Number(key));
-  const presentIdea = {
-      ...giftings[index],    //spreads the array into each element so they can be set to "deleted"
+  const index = othersGifts.findIndex(item => item.id === Number(key));
+  const othersGiftIdea = {
+      ...othersGifts[index],    //spreads the array into each element so they can be set to "deleted"
       deleted: true  
     };
-    giftings = giftings.filter(item => item.id !== Number(key));
-  showGifts(presentIdea);
+    othersGifts = othersGifts.filter(item => item.id !== Number(key));
+  showGifts(othersGiftIdea);
   
 }
 
 // to display how many items are left to be completed
 const counter = () => {
-  const itemsCounter =  giftings.filter(present=> !present.checked)
+  const itemsCounter =  othersGifts.filter(othersGift=> !othersGift.checked)
   const count = document.getElementById('giftsLeft');
   // has to check if there is more than one item in order to display plural items or not
   const counterString = itemsCounter.length === 1 ? 'gift' : 'gifts';
